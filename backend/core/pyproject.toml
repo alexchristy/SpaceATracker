@@ -1,0 +1,7 @@
+[project]
+name = "core"
+version = "0.1.0"
+description = "Shared core models and database functions"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []

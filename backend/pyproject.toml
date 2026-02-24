@@ -1,0 +1,119 @@
+[project]
+name = "SpaceATrackerBackend"
+version = "0.1.0"
+description = "SpaceATracker Backend Workspace"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+    "core",
+    "api",
+    "scraper",
+]
+
+[tool.ty.rules]
+all = "error"
+
+[tool.ty.terminal]
+error-on-warning = true
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+indent-width = 4
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "*.tf*",
+    ".gitignore",
+    "*.lock",
+    "*.json",
+    ".terraform*",
+]
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "I", "N", "D", "W", "ANN", "S", "B", "A", "C4", "DTZ", "EM", 
+    "ISC", "G", "Q", "RET", "SIM", "TD", "FIX", "PL", "RUF", "LOG", "UP", "PT",
+    "TID", "TCH", "ARG", "TRY", "PERF", "FURB"
+]
+ignore = [
+    "E501", "D100", "D104", "TD003", "PLR0912", "PLR0915", "D203", "D213", "ISC001", 
+    "C408", "E402"
+]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.ruff.lint.flake8-builtins]
+strict-checking = true
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = true
+mark-parentheses = true
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = [
+    "--cov",
+    "--cov-report=html",
+]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+skip_empty = true
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.2",
+    "ty>=0.0.18",
+]
