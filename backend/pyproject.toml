@@ -70,7 +70,7 @@ unfixable = []
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**/*.py" = ["S101"]
+"**/tests/**/*.py" = ["S101", "PLR2004", "ANN201", "D103"]
 
 [tool.ruff.lint.flake8-builtins]
 strict-checking = true
@@ -116,4 +116,6 @@ directory = "htmlcov"
 dev = [
     "ruff>=0.15.2",
     "ty>=0.0.18",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
 ]

@@ -1,5 +1,18 @@
+# Python
+__pycache__/
+
 # Virtual Environment
 .venv/
 
 # Ruff
 .ruff_cache/
+
+# Packages
+*.egg-info/
+
+# Coverage
+htmlcov/
+.coverage
+
+# Tests
+.pytest_cache/
