@@ -1,15 +1,9 @@
-from typing import TYPE_CHECKING
-
 from sqlalchemy import String
-from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 
 from core.enums.location import LocationType
 
 from .base import Base
-
-if TYPE_CHECKING:
-    from sqlalchemy.orm import Mapped
 
 
 class Location(Base):
@@ -18,15 +12,16 @@ class Location(Base):
     __tablename__ = "locations"
 
     id: Mapped[str] = mapped_column(String(50), primary_key=True)
-    name: Mapped[str] = mapped_column(String(255))
+    name: Mapped[str | None] = mapped_column(String(255))
+    raw_location: Mapped[str | None] = mapped_column(String(255))
     location_type: Mapped[LocationType] = mapped_column(String(50), nullable=False)
 
-    latitude: Mapped[float]
-    longitude: Mapped[float]
+    latitude: Mapped[float | None]
+    longitude: Mapped[float | None]
 
-    timezone: Mapped[str] = mapped_column(String(50))
+    timezone: Mapped[str | None] = mapped_column(String(50))
 
-    country: Mapped[str] = mapped_column(String(100))
+    country: Mapped[str | None] = mapped_column(String(100))
     state_or_province: Mapped[str | None] = mapped_column(String(100))
 
     __mapper_args__ = {  # noqa: RUF012
@@ -49,7 +44,7 @@ class CivilianAirport(Location):
 class MilitaryAirport(Location):
     """Military airport location."""
 
-    icao_code: Mapped[str | None] = mapped_column(String(4))
+    icao_code: Mapped[str | None] = mapped_column(String(4), use_existing_column=True)
     website_url: Mapped[str | None] = mapped_column(String(2048))
 
     __mapper_args__ = {  # noqa: RUF012

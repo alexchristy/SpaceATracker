@@ -1,17 +1,14 @@
+from datetime import datetime
 from typing import TYPE_CHECKING
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String
-from sqlalchemy.orm import mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from core.enums.seats import SeatStatus
 
 from .base import Base
 
 if TYPE_CHECKING:
-    from datetime import datetime
-
-    from sqlalchemy.orm import Mapped
-
-    from core.enums.seats import SeatStatus
-
     from .location import Location
 
 
@@ -22,8 +19,8 @@ class Flight(Base):
 
     id: Mapped[str] = mapped_column(String(50), primary_key=True)
 
-    origin_id: Mapped[str] = mapped_column(String(50), ForeignKey("location.id"))
-    destination_id: Mapped[str] = mapped_column(String(50), ForeignKey("location.id"))
+    origin_id: Mapped[str] = mapped_column(String(50), ForeignKey("locations.id"))
+    destination_id: Mapped[str] = mapped_column(String(50), ForeignKey("locations.id"))
 
     origin: Mapped[Location] = relationship(foreign_keys=[origin_id])
     destination: Mapped[Location] = relationship(foreign_keys=[destination_id])
