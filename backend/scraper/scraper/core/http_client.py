@@ -1,6 +1,7 @@
 import logging
 from typing import Self
 
+import aiohttp
 from curl_cffi.requests import AsyncSession
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,7 @@ class BaseHttpClient:
     def __init__(self) -> None:
         """Initialize the BaseHttpClient."""
         self.session: AsyncSession | None = None
+        self.fallback_session: aiohttp.ClientSession | None = None
 
     async def __aenter__(self) -> Self:
         """Enter the async context manager and start the session."""
@@ -33,6 +35,7 @@ class BaseHttpClient:
             self.session = AsyncSession(
                 impersonate="chrome",
                 timeout=30,
+                verify=False,
             )
 
     async def close(self) -> None:
@@ -40,6 +43,17 @@ class BaseHttpClient:
         if self.session:
             await self.session.close()
             self.session = None
+        if self.fallback_session:
+            await self.fallback_session.close()
+            self.fallback_session = None
+
+    def _get_fallback_session(self) -> aiohttp.ClientSession:
+        """Lazily initialize and return the aiohttp fallback session."""
+        if not self.fallback_session:
+            # We must pass ssl=False into aiohttp as well, due to the DoD CA certs issue
+            connector = aiohttp.TCPConnector(ssl=False)
+            self.fallback_session = aiohttp.ClientSession(connector=connector)
+        return self.fallback_session
 
     def _check_session(self) -> None:
         """Check if the session is initialized before executing requests."""

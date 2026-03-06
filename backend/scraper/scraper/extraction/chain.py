@@ -44,7 +44,7 @@ class ExtractionChain:
                 logger.exception(
                     "Strategy %s failed with an error on %s",
                     strategy_name,
-                    terminal.name,
+                    terminal.name or getattr(terminal, "id", "Unknown"),
                 )
                 continue
 
@@ -57,12 +57,13 @@ class ExtractionChain:
                         "Strategy %s produced %s for %s",
                         strategy_name,
                         field,
-                        terminal.name,
+                        terminal.name or getattr(terminal, "id", "Unknown"),
                     )
 
         if not merged:
             logger.warning(
-                "All extraction strategies found nothing for %s", terminal.name
+                "All extraction strategies found nothing for %s",
+                terminal.name or getattr(terminal, "id", "Unknown"),
             )
 
         return ExtractionResult(**merged)

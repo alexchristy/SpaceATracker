@@ -33,15 +33,17 @@ async def run_discovery_scraper():
 async def run_extraction_scraper() -> None:
     """Async wrapper for the 10-minute Extraction target."""
     from scraper.extraction.service import ExtractionService
+    from scraper.storage.s3 import S3Client
 
     logger.info("Initializing Database...")
     await init_db()
 
     logger.info("Starting Extraction Scraper Worker")
     async with (
-        AsyncSessionFactory() as session
-    ):  # Assuming get_db_session is a typo and AsyncSessionFactory is intended, or get_db_session needs to be defined/imported. Sticking to the provided change for now.
-        service = ExtractionService(session)
+        AsyncSessionFactory() as session,
+        S3Client() as s3_client,
+    ):
+        service = ExtractionService(session, s3_client)
         await service.run_extraction()
 
 

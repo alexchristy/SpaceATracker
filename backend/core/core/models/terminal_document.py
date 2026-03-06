@@ -21,4 +21,5 @@ class TerminalDocument(Base):
     url: Mapped[str] = mapped_column(String(2048), nullable=False)
     content_hash: Mapped[str] = mapped_column(String(64), nullable=False)
     storage_key: Mapped[str] = mapped_column(String(512), nullable=False)
+    mime_type: Mapped[str] = mapped_column(String(255), nullable=False)
     scraped_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))

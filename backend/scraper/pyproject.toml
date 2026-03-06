@@ -8,10 +8,10 @@ dependencies = [
     "curl-cffi>=0.12",
     "asyncpg>=0.31.0",
     "core",
-    "greenlet>=3.3.2",
-    "psycopg2-binary>=2.9.11",
     "pydantic-settings>=2.13.1",
     "selectolax>=0.4.6",
+    "aiobotocore>=3.2.1",
+    "python-magic>=0.4.27",
 ]
 
 [build-system]

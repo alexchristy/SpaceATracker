@@ -15,6 +15,7 @@ class TerminalDocumentCreate(BaseModel):
     url: AnyUrl
     content_hash: str
     storage_key: str
+    mime_type: str
     scraped_at: datetime
 
 
