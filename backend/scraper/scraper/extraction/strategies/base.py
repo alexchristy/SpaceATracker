@@ -1,23 +1,25 @@
-"""Strategy Pattern Protocol for extracting PDF schedules from HTML pages."""
+"""Strategy Pattern Protocol for extracting document URLs from HTML pages."""
 
-from typing import Protocol
+from typing import TYPE_CHECKING, Protocol
 
-from core.schemas.location import MilitaryAirportRead
+if TYPE_CHECKING:
+    from core.schemas.extraction import ExtractionResult
+    from core.schemas.location import MilitaryAirportRead
 
 
-class PDFExtractor(Protocol):
-    """Protocol defining the interface for all PDF extraction strategies."""
+class DocumentExtractor(Protocol):
+    """Protocol defining the interface for all document extraction strategies."""
 
-    async def extract_pdf_url(
+    async def extract_docs(
         self, html: str, terminal: MilitaryAirportRead
-    ) -> str | None:
-        """Extract the most recent schedule PDF URL from the given HTML content.
+    ) -> ExtractionResult:
+        """Extract document URLs from the given HTML content.
 
         Args:
             html: The raw HTML content of the terminal's page.
-            terminal: The MilitaryAirport record for context (name, icao, etc).
+            terminal: The MilitaryAirport record for context (name, url, etc).
 
         Returns:
-            The absolute URL to the schedule PDF, or None if not found/unsupported by this strategy.
+            An ExtractionResult with any discovered document URLs populated.
         """
         ...

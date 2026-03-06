@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html  lang="en-US">
+<head id="Head"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta name="REVISIT-AFTER" content="1 DAYS" />
+<meta name="RATING" content="GENERAL" />
+<meta name="RESOURCE-TYPE" content="DOCUMENT" />
+<meta content="text/javascript" http-equiv="Content-Script-Type" />
+<meta content="text/css" http-equiv="Content-Style-Type" />
+<title>
+	Navsta Rota Passenger Terminal
+</title><meta id="MetaDescription" name="description" content="Navsta Rota Passenger Terminal" /><meta id="MetaKeywords" name="keywords" content="AMC, Air Mobility Command" /><meta id="MetaRobots" name="robots" content="INDEX, FOLLOW" /><link href="/Resources/Shared/stylesheets/dnndefault/7.0.0/default.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/DesktopModules/PhotoDashboard/module.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/DesktopModules/HotInfo/module.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/DesktopModules/ImageLinks/module.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/DesktopModules/PhotoDashboard/Layouts/ResponsiveWithFocus/template.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/Plugins/SocialIcons/css/fa-social-icons.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/Plugins/Skin/SkipNav/css/skipnav.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/Plugins/spectrum/spectrum.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/Plugins/bootstrap4/css/bootstrap.min.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/ValidatedPlugins/font-awesome6/css/all.min.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/Desktopmodules/SharedLibrary/ValidatedPlugins/font-awesome6/css/v4-shims.min.css?cdv=2602" type="text/css" rel="stylesheet"/><link href="/portals/_default/skins/AirForce3/Assets/css/theme.css?cdv=2602" type="text/css" rel="stylesheet"/><script src="/Resources/libraries/jQuery/03_07_01/jquery.js?cdv=2602" type="text/javascript"></script><script src="/Resources/libraries/jQuery-Migrate/03_04_01/jquery-migrate.js?cdv=2602" type="text/javascript"></script><script src="/Resources/libraries/jQuery-UI/01_13_03/jquery-ui.min.js?cdv=2602" type="text/javascript"></script><link rel='icon' href='/Portals/12/faviconshield2.ico?ver=KAHa_GZvIAD31XLhwiATvg%3d%3d' type='image/x-icon' /><meta name='host' content='DMA Public Web' /><meta name='contact' content='dma.WebSD@mail.mil' /><link rel="stylesheet" type="text/css" href="/DesktopModules/SharedLibrary/Controls/Banner/CSS/usa-banner.css" /><script  src="/Desktopmodules/SharedLibrary/Plugins/GoogleAnalytics/Universal-Federated-Analytics-8.7.js?agency=DOD&subagency=USAF&sitetopic=dma.web&dclink=true"  id="_fed_an_ua_tag" ></script><meta name="viewport" content="width=device-width,initial-scale=1" /></head>
+<body id="Body">
+
+    <form method="post" action="/AMC-Travel-Site/Terminals/EUCOM-Terminals/Navsta-Rota-Passenger-Terminal/" id="Form" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form'];
+if (!theForm) {
+    theForm = document.Form;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV1kC6Opk-j7Ovb-SAZCFwgkKN6-aOSMpf3ANt0tBlDSGGv34uY1&amp;t=638901627720898773" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=NJmAwtEo3IqQxruIKfMJIKVqYFr8X2A3pYDI5WgReApnlCnSQc10ItQbH_Yjw3A99-c-ldWVGXis4wLnzGquiKCRecxn9Gwr7HA67J3mbFR4YoKs7EqhKs8_Mm3QA2oPxBC2zQ2&amp;t=32e5dfca" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dwY9oWetJoIT7Akkt794TYkfQTm4Xq3crQAKDNOseTloT5U5HN0X0SGDIC7sWy3kT54AXi0ZckAInZmf-xkIQfYHLypQgaUx3ZeKcOpYF1tLgj4X3iNuOFZxMZwqQRjTFm25937m-A7PD-XP0&amp;t=32e5dfca" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="4LhiscTaJxwRdl+DvT793D3vIMbzCLG1T9NbqfVzC/dBC0QXt8s/WjfhfZDqRn2lO2u1bXVeaxEK0NRupdewuQOQeRlUx08D750D7L4GzpPbLjWz" />
+</div><script src="/Desktopmodules/SharedLibrary/Plugins/spectrum/spectrum.js?cdv=2602" type="text/javascript"></script><script src="/js/dnn.modalpopup.js?cdv=2602" type="text/javascript"></script><script src="/js/dnncore.js?cdv=2602" type="text/javascript"></script><script src="/Desktopmodules/SharedLibrary/Plugins/Mobile-Detect/mobile-detect.min.js?cdv=2602" type="text/javascript"></script><script src="/Desktopmodules/SharedLibrary/Plugins/Skin/js/common.js?cdv=2602" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ScriptManager', 'Form', [], [], [], 90, '');
+//]]>
+</script>
+
+        
+        
+        
+
+<script type="text/javascript">
+$('#personaBar-iframe').load(function() {$('#personaBar-iframe').contents().find("head").append($("<style type='text/css'>.personabar .personabarLogo {}</style>")); });
+</script>
+<div id="dnn_ctl11_header_banner_container" class="header_banner_container">
+    <span class="header_banner_inner">
+        <div class="header_banner_flag">
+            An official website of the United States government 
+        <div class="header_banner_accordion" tabindex="0" role="button" aria-expanded="false"><u>Here's how you know 
+        <span class="expand-more-container"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path class="expand-more" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            </svg></span></u></div>
+        </div>
+        <div class="header_banner_panel" style="">
+            <div class="header_banner_panel_item">
+                <span class="header_banner_dotgov"></span>
+                <div id="dnn_ctl11_bannerContentLeft" class="header_banner_content"><p class="banner-contentLeft-text"><strong> Official websites use .mil </strong></p>A <strong>.mil</strong> website belongs to an official U.S. Department of Defense organization in the United States.</div>
+            </div>
+            <div class="header_banner_panel_item https">
+                <span class="header_banner_https"></span>
+                <div id="dnn_ctl11_bannerContentRight" class="header_banner_content"><p class="banner-contentRight-text"><strong>Secure .mil websites use HTTPS</strong></p><div> A <strong>lock (<span class='header_banner_icon_lock'><svg xmlns = 'http://www.w3.org/2000/svg' width='52' height='64' viewBox='0 0 52 64'><title>lock </title><path class='icon_lock' fill-rule='evenodd' d='M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z' /> </svg></span>)</strong> or <strong> https://</strong> means you’ve safely connected to the .mil website. Share sensitive information only on official, secure websites.</div></div>
+            </div>
+
+        </div>
+    </span>
+</div><style> .header_banner_container{ background-color: #15263b; color: #FFF; } .icon_lock { fill: #FFF;} .header_banner_container .header_banner_content .banner-contentLeft-text, .header_banner_container .header_banner_content .banner-contentRight-text { color: #FFF;} </style>
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+initializeSkin();
+});
+
+</script>
+
+<script type="text/javascript">
+var skinvars = {"SiteName":"Air Mobility Command","SiteShortName":"Air Mobility Command","SiteSubTitle":"","aid":"AMC","IsSecureConnection":true,"IsBackEnd":false,"DisableShrink":false,"IsAuthenticated":false,"SearchDomain":"search.usa.gov","SiteUrl":"https://www.amc.af.mil/","LastLogin":null,"IsLastLoginFail":false,"IncludePiwik":false,"PiwikSiteID":-1,"SocialLinks":{"Facebook":{"Url":"http://www.facebook.com/Usairforce","Window":"_blank","Relationship":"noopener"},"Twitter":{"Url":"http://twitter.com/usairforce","Window":"_blank","Relationship":"noopener"},"YouTube":{"Url":"http://www.youtube.com/afbluetube","Window":"_blank","Relationship":"noopener"},"Flickr":{"Url":"http://www.flickr.com/usairforce","Window":"_blank","Relationship":"noopener"},"Pintrest":{"Url":"https://www.pinterest.com/usairforce","Window":"_blank","Relationship":"noopener"},"Instagram":{"Url":"http://instagram.com/officialusairforce","Window":"_blank","Relationship":"noopener"},"Blog":{"Url":"http://airforcelive.dodlive.mil","Window":"_blank","Relationship":"noopener"},"RSS":{"Url":"http://www.af.mil/rss/","Window":"_blank","Relationship":"noopener"},"Podcast":{"Url":"","Window":"","Relationship":null},"Email":{"Url":"","Window":"","Relationship":null},"LinkedIn":{"Url":"","Window":"","Relationship":null},"Snapchat":{"Url":"","Window":"","Relationship":null}},"SiteLinks":null,"LogoffTimeout":3300000,"SiteAltLogoText":""};
+</script>
+<script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","logo":null,"name":"Air Mobility Command","url":"https://www.amc.af.mil/","sameAs":["http://www.facebook.com/Usairforce","http://twitter.com/usairforce","http://instagram.com/officialusairforce","https://www.pinterest.com/usairforce","http://www.youtube.com/afbluetube"]}</script>
+
+<div id="app" class="layout-main no-banner ">
+    
+
+<div id="skip-link-holder"><a id="skip-link" aria-label="Press enter to skip to main content" href="#skip-target">Skip to main content (Press Enter).</a></div>
+
+<header id="header-main">
+    <div id="header-main-inner">
+        <nav id="nav-main" aria-label="Main navigation">
+            <div type="button" class="nav-main-toggle" tabindex="0" role="button" aria-label="Open Main Navigation"> 
+		        <span class="nav-main-toggle-label">
+				    <span class="nav-main-toggle-item nav-main-toggle-item-top">
+					    <span class="nav-main-toggle-item-inner nav-main-toggle-item-inner-top"></span>
+				    </span>
+				    <span class="nav-main-toggle-item nav-main-toggle-item-bottom">
+					    <span class="nav-main-toggle-item-inner nav-main-toggle-item-inner-bottom"></span>
+				    </span>
+			    </span>
+		    </div>
+            
+            <div id="nav-main-inner">
+                <div id="nav-main-header">
+                    <div type="button" class="nav-main-toggle" tabindex="0" role="button" aria-label="Close Main Navigation"> 
+		                <span class="nav-main-toggle-label">
+				            <span class="nav-main-toggle-item nav-main-toggle-item-top">
+					            <span class="nav-main-toggle-item-inner nav-main-toggle-item-inner-top"></span>
+				            </span>
+				            <span class="nav-main-toggle-item nav-main-toggle-item-bottom">
+					            <span class="nav-main-toggle-item-inner nav-main-toggle-item-inner-bottom"></span>
+				            </span>
+			            </span>
+		            </div>
+                    <svg class="svg-logo" width="80" height="70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70">
+                        <g>
+                            <title>U.S. Air Force Logo</title>
+                            <g transform="matrix(0.30864200474303516,0,0,0.30864200474303516,96.66049876374962,86.23049787780087) ">
+                                <polygon points="-216.59274005889893,-115.45912504196167 -239.41073322296143,-98.88313627243042 -211.62673664093018,-78.69417142868042 -202.91378498077393,-105.51613187789917 " class="fill"/>
+                                <polygon points="-207.52175617218018,-75.70814847946167 -184.70473957061768,-59.13417387008667 -161.90072345733643,-75.70814847946167 -184.70473957061768,-92.29115629196167 " class="fill"/>
+                                <polygon points="-195.99575519561768,-126.93117094039917 -279.6467409133911,-187.7141375541687 -260.1197633743286,-147.0781512260437 -232.37673664093018,-126.93117094039917 " class="fill"/>
+                                <polygon points="-187.24075031280518,-153.7301287651062 -304.11372089385986,-238.64913511276245 -284.5887575149536,-198.0051531791687 -194.19973468780518,-132.33217191696167 " class="fill"/>
+                                <polygon points="-287.54475116729736,-271.9891619682312 -301.3247194290161,-243.31515073776245 -258.9787721633911,-212.55013608932495 " class="fill"/>
+                                <polygon points="-166.50472736358643,-105.51613187789917 -157.78475666046143,-78.69417142868042 -130.01070880889893,-98.88313627243042 -152.83077716827393,-115.45912504196167 " class="fill"/>
+                                <polygon points="-137.04073810577393,-126.93117094039917 -109.2976884841919,-147.0781512260437 -89.7787675857544,-187.7141375541687 -173.42074298858643,-126.93117094039917 " class="fill"/>
+                                <polygon points="-182.17178058624268,-153.7301287651062 -175.22274494171143,-132.33217191696167 -84.8327226638794,-198.0051531791687 -65.3028154373169,-238.64913511276245 " class="fill"/>
+                                <polygon points="-81.8727617263794,-271.9891619682312 -110.4467363357544,-212.55013608932495 -68.0937089920044,-243.31515073776245 " class="fill"/>
+                                <path d="m-197.38074,-111.46014c0,-6.997 5.676,-12.677 12.682,-12.677c6.99,0 12.677,5.68 12.677,12.677c0,7.005 -5.687,12.68 -12.677,12.68c-7.006,-0.001 -12.682,-5.675 -12.682,-12.68z" class="fill"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div id="nav-main-search">
+                    <div id="dnn_Header_MobileSearch" class="search-input-wrap">
+	
+                        <input id="search-input" aria-label="Search" type="search" autocomplete="off" name="header-search" placeholder="SEARCH" value="">
+                    
+</div>
+                </div>
+                <div id="nav-main-menu">
+                    <ul id="nav-main-menu-top-ul">
+	
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/" target="" aria-expanded="false">Home</a>
+    
+        <ul>
+        
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Home/WEPTAC/" target="" >WEPTAC</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Home/MILO-and-Small-Business/" target="" >MILO and Small Business</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Home/AMC-Commercial-Services/" target="" >Industry Partners</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Home/Workforce-Resources/" target="" >Workforce Resources</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/" target="" aria-expanded="false">AMC Travel Site</a>
+    
+        <ul>
+        
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/AMC-Space-Available-Travel-Page/" target="" aria-expanded="false">AMC Space Available Travel Page</a>
+    
+        <ul>
+        
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/AMC-Space-Available-Travel-Page/Space-Available-Email-Sign-up-Form/" target="" >Space Available Email Sign up Form</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/AMC-Pet-Travel-Page/" target="" >AMC Pet Travel Page</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/COVID-19/" target="" >COVID-19</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/AMC-Travel-Site/Frequently-Asked-Questions/" target="" >Frequently Asked Questions</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/About-Us/" target="" aria-expanded="false">About Us</a>
+    
+        <ul>
+        
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/About-Us/Biographies/" target="" >Biographies</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Units/AMC-History/" target="" >History</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/About-Us/Fact-Sheets/" target="" >Fact Sheets</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/News/" target="" aria-expanded="false">News</a>
+    
+        <ul>
+        
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/News/Photos/" target="" >Photos</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/News/Art/" target="" >Art</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="parent ">
+    
+        <a href="https://www.amc.af.mil/Units/" target="" aria-expanded="false">Units</a>
+    
+        <ul>
+        
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Units/618th-Air-Operations-Center/" target="" >618th Air Operations Center</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Units/Eighteenth-Air-Force/" target="" >Eighteenth Air Force</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Units/515th-Air-Mobility-Operations-Wing/" target="" >515th Air Mobility Operations Wing</a>
+    
+    </li>
+
+        </ul>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="https://www.amc.af.mil/Contact-Us/" target="" >Contact Us</a>
+    
+    </li>
+
+</ul>
+
+
+                </div>
+                <div id="nav-main-footer">
+                    <ul class=""><li class=""><a href="https://www.facebook.com/theofficialairmobilitycommand/" target="_blank" rel="noopener noreferrer" aria-label="Facebook icon opens in a new window" title="Facebook icon"><span class="social-icon fab fa-facebook-square social-link-224"></span></a></li><li class=""><a href="https://www.linkedin.com/company/air-mobility-command" target="_blank" rel="noopener noreferrer" aria-label="LinkenIn Icon opens in a new window" title="LinkenIn Icon"><span class="social-icon fa-brands fa-linkedin social-link-2436"></span></a></li><li class=""><a href="https://www.instagram.com/airmobilitycmd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram icon opens in a new window" title="Instagram icon"><span class="social-icon fab fa-instagram social-link-1505"></span></a></li></ul>
+                </div>
+            </div>
+            <div id="nav-main-open-overlay"></div>
+        </nav>
+
+        <div id="logo-main">
+            <a href="https://www.amc.af.mil/">
+             
+                <img src="/Portals/_default/Skins/AirForce3/Assets/images/af-logo-seal.png" alt="U.S. Air Force Logo" title="U.S. Air Force"/>
+                
+                <span class="site-title">Air Mobility Command</span>
+                
+            </a>
+        </div>
+
+        <nav id="nav-secondary" aria-label="Search navigation">
+            <div id="nav-secondary-inner">
+                <ul class=""><li class=""><a href="https://www.af.mil/DAF-Executive-Order-Implementation/"><span class="text text-link-2512">DAF Executive Order Implementation</span></a></li><li class=""><a href="/AMC-Travel-Site/"><span class="text text-link-1694">AMC Travel Site</span></a></li><li class=""><a href="/News/"><span class="text text-link-1695">News</span></a></li><li class=""><a href="/Units/"><span class="text text-link-1696">Units</span></a></li><li class=""><a href="/About-Us/"><span class="text text-link-1728">About Us</span></a></li></ul>
+                <div id="dnn_Header_DesktopSearch">
+	
+                    <input type="checkbox" class="hidden-input" id="header-main-search-state" aria-label="Search" tabindex="-1" aria-hidden="true">
+                    <div id="main-search-open-overlay"></div>
+                    <div id="header-main-search">
+                      <div class="search-input-wrap">
+                        <input id="header-main-search-input" aria-label="Search" class="global-search" minlength="1" tabindex="-1" type="search" autocomplete="off" placeholder="Search topics, names, categories..." value="">
+                        <label class="header-main-search-toggle-label" for="header-main-search-state" tabindex="0" aria-label="Search toggle"></label>
+                      </div>
+                    </div>
+                
+</div>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<div id="header-main-spacer"></div>
+
+<p><a name="skip-target"></a></p>
+    <!--/* //NOSONAR */--><div id="dnn_HeaderPaneTop" class="DNNEmptyPane"></div>
+<div id="dnn_HeaderPaneMid" class="DNNEmptyPane"></div>
+<div id="dnn_HeaderPaneBottom" class="DNNEmptyPane"></div>
+    
+    <main class="content ">
+        <!--/* //NOSONAR */--><div id="dnn_ContentPane"><div class="DnnModule DnnModule-PhotoDashboard DnnModule-38006"><a name="38006"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr38006_ContentPane"><!-- Start_Module_38006 --><div id="dnn_ctr38006_ModuleContent" class="DNNModuleContent ModPhotoDashboardC">
+	
+<style>
+    .focal-point-wrap-38006 figure figcaption h1 {
+        text-transform: Uppercase;
+    }
+</style>
+<div class="focal-point-wrap focal-point-wrap-38006" id="responsive-with-focus-38006">
+    <figure class="hero banner">
+        <picture class="fixed-aspect">
+            <img  data-focus-top="76" data-focus-left="57" style="object-position:57% 76%"  src="https://media.defense.gov/2022/Apr/11/2002973960/-1/-1/0/220411-F-F3200-001.JPG" alt="Rota Terminal" />
+        </picture>
+        
+            
+            <figcaption  class="with-text-shadow"  >
+                <h1>AIR TERMINAL ROTA , SPAIN</h1>
+            </figcaption>
+            
+        
+    </figure>
+</div>
+
+</div><!-- End_Module_38006 --></div>
+</div></div><div class="DnnModule DnnModule-HotInfo DnnModule-67842"><a name="67842"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr67842_ContentPane"><!-- Start_Module_67842 --><div id="dnn_ctr67842_ModuleContent" class="DNNModuleContent ModHotInfoC">
+	<div id="dnn_ctr67842_View_panelOuter" class="hi-outer hi-outern-67842">
+		
+    <style> .hi-main-barn-67842 { background-color:#1c2347;color:#ffffff} .hi-outern-67842{ margin-bottom:15px} </style>
+    <div id="dnn_ctr67842_View_hotContainer" class="hi-main-bar hi-main-barn-67842">
+			
+        <span class="hi-text">
+            <span id="dnn_ctr67842_View_lblText"></span>
+        </span>
+        <span class="hi-date">
+            <span id="dnn_ctr67842_View_lblDate"></span>
+        </span>
+    
+		</div>
+    
+    
+
+	</div>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('.hi-admin-sliden-67842').click(function () {
+
+            var slideoutMenu = $(this).closest(".hi-admin-outer");
+            slideoutMenu.toggleClass("open");
+            if (slideoutMenu.hasClass("open")) {
+                slideoutMenu.animate({
+                    right: "0px"
+                });
+            } else {
+                slideoutMenu.animate({
+                    right: -310
+                }, 250);
+            }
+        });
+    });
+</script>
+
+</div><!-- End_Module_67842 --></div>
+</div></div></div>
+<div class="container container-wide">
+    <div class="row">
+        <div id="dnn_CenterPaneWide_Top" class="col-md DNNEmptyPane"></div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane1"><div class="DnnModule DnnModule-HotInfo DnnModule-38009"><a name="38009"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr38009_ContentPane"><!-- Start_Module_38009 --><div id="dnn_ctr38009_ModuleContent" class="DNNModuleContent ModHotInfoC">
+	<div id="dnn_ctr38009_View_panelOuter" class="hi-outer hi-outern-38009">
+		
+    <style> .hi-main-barn-38009 { background-color:#ffff00;color:#000000} .hi-outern-38009{ margin-bottom:15px} </style>
+    <div id="dnn_ctr38009_View_hotContainer" class="hi-main-bar hi-main-barn-38009">
+			
+        <span class="hi-text">
+            <span id="dnn_ctr38009_View_lblText">Since 30th June 2025, All dependents 10 years or older, must present a USID dependent identification and privilege card.&nbsp;<strong>Documentation requirements for dependents under the age of 10</strong>. &nbsp;Uniformed services member dependents under the age of 10, must travel with the <strong>sponsor or eligible parent and must possess a Federal, State, local or tribal government-issued identification</strong>.&nbsp;<strong>Sponsor&nbsp;will possess valid documentation showing proof of sponsorship of dependents for members under the age of 10</strong> and traveling with the sponsor. Proof of sponsorship can be obtained through the installation&#39;s Military Personnel Office or by accessing the following website: htttps://milconnect.dmdc.osd.mil.&nbsp;The above proof of sponsorship is the only valid document accepted for travel. Other documentation, i.e., a birth certificate will not be accepted.</span>
+        </span>
+        <span class="hi-date">
+            <span id="dnn_ctr38009_View_lblDate"></span>
+        </span>
+    
+		</div>
+    
+    
+
+	</div>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('.hi-admin-sliden-38009').click(function () {
+
+            var slideoutMenu = $(this).closest(".hi-admin-outer");
+            slideoutMenu.toggleClass("open");
+            if (slideoutMenu.hasClass("open")) {
+                slideoutMenu.animate({
+                    right: "0px"
+                });
+            } else {
+                slideoutMenu.animate({
+                    right: -310
+                }, 250);
+            }
+        });
+    });
+</script>
+
+</div><!-- End_Module_38009 --></div>
+</div></div></div>
+<div class="container">
+    <div id="dnn_CarouselPane" class="DNNEmptyPane"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div id="dnn_CenterPane_Top" class="col-md DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_Half1" class="col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Half2" class="col-md-6 DNNEmptyPane"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="dnn_ContentPaneLeft"><div class="DnnModule DnnModule-DNN_HTML DnnModule-38007"><a name="38007"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr38007_ContentPane"><!-- Start_Module_38007 --><div id="dnn_ctr38007_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38007_HtmlModule_lblContent" class="Normal">
+	<div><br></div><div><br></div><div><br></div>
+</div>
+
+</div><!-- End_Module_38007 --></div>
+</div></div></div>
+            <div class="row">
+                <div id="dnn_ContentPaneLeftSplitLeft" class="col-md-6 DNNEmptyPane"></div>
+                <div id="dnn_ContentPaneLeftSplitRight" class="col-md-6 DNNEmptyPane"></div>
+            </div>
+            <div id="dnn_ContentPaneLeft2" class="DNNEmptyPane"></div>
+            <div class="row">
+                <div id="dnn_ContentPaneLeftThird1" class="col-md-4 DNNEmptyPane"></div>
+                <div id="dnn_ContentPaneLeftThird2" class="col-md-4 DNNEmptyPane"></div>
+                <div id="dnn_ContentPaneLeftThird3" class="col-md-4 DNNEmptyPane"></div>
+            </div>
+            <div id="dnn_ContentPaneLeft3" class="DNNEmptyPane"></div>
+        </div>
+        <div id="dnn_RightPane" class="col-md-3 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_EvenLeft" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_EvenMiddle" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_EvenRight" class="col-md-4 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_SmallSideLeft" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_SmallSideMiddle" class="col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_SmallSideRight" class="col-md-3 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_QuadFirst" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_QuadSecond" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_QuadThird" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_QuadFourth" class="col-md-3 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_HalfLeft" class="col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_HalfRight" class="col-md-6 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_LeftPane" class="col-md-3"><div class="DnnModule DnnModule-DNN_HTML DnnModule-38012"><a name="38012"></a>
+
+<div class="theme-container title-container">
+    
+    <h2 class="theme-container-header border-bottom">
+        <span id="dnn_ctr38012_dnnTITLE_titleLabel" class="title">Quick Links</span>
+
+
+
+    </h2>
+    <div id="dnn_ctr38012_ContentPane" class="theme-container-content"><!-- Start_Module_38012 --><div id="dnn_ctr38012_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38012_HtmlModule_lblContent" class="Normal">
+	<p><a href="/AMC-Travel-Site/">AMC Travel</a></p>
+
+<p><a href="/Portals/12/AMC Tvl Pg/Passenger Terminals/European Command Terminals/NS Rota Pax Term/AMC GRAM Rota.pdf?ver=WL88WNYNHx_SVizsSVPPaQ%3d%3d">AMC GRAM</a></p>
+
+<p><a href="/AMC-Travel-Site/AMC-Space-Available-Travel-Page/">Space Available</a></p>
+
+<p><a href="/AMC-Travel-Site/AMC-Pet-Travel-Page/">Pet Travel Information</a></p>
+
+<p><a href="https://www.cdc.gov/importation/dogs/">Bringing a Dog into the U.S. | Importation | CDC</a></p>
+
+<p><a href="https://cdc-786687.workflowcloud.com/forms/090dc543-7b2f-4538-b2c7-2919d12ecc73">CDC Dog Import Form Direct Link</a></p>
+
+<p><a href="/AMC-Travel-Site/Frequently-Asked-Questions/">Frequently Asked Questions</a></p>
+
+<p><a href="https://ngis.dodlodging.net/propertys/Rota-NS">Navy Hotels for TDY and Leisure Lodging -- Navy Gateway Inns &amp; Suites (dodlodging.net)</a></p>
+
+<p><a href="https://rota.uso.org/">USO Rota</a></p>
+
+<p><a href="https://www.navymwrrota.com/">NS Rota SP (navymwrrota.com)</a></p>
+
+<p><a href="https://www.mynavyexchange.com/storelocator/storedetails.jsp?storeid=716">Rota Navy Exchange In Rota Naval, Es | Shop Your Navy Exchange - Official Site (mynavyexchange.com)</a></p>
+
+<p><a href="https://ice.disa.mil/index.cfm?fa=card&amp;sp=138241&amp;s=8&amp;dep=DoD&amp;card=1">ICE :: Comment Card (disa.mil)</a></p>
+
+<p><a href="https://www.facebook.com/USNavalStationRota">https://www.facebook.com/USNavalStationRota</a></p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</div><!-- End_Module_38012 --></div>
+</div></div><div class="DnnModule DnnModule-DNN_HTML DnnModule-38013"><a name="38013"></a>
+
+<div class="theme-container title-container">
+    
+    <h2 class="theme-container-header border-bottom">
+        <span id="dnn_ctr38013_dnnTITLE_titleLabel" class="title">Contact Information</span>
+
+
+
+    </h2>
+    <div id="dnn_ctr38013_ContentPane" class="theme-container-content"><!-- Start_Module_38013 --><div id="dnn_ctr38013_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38013_HtmlModule_lblContent" class="Normal">
+	<p><b>&nbsp;Air Terminal Rota, Spain</b></p>
+
+<p>Alvaro de Bazan Street</p>
+
+<p>Building 2<br />
+NAVSTA ROTA, SPAIN&nbsp; FPO 09645-1500</p>
+
+<p><strong>Service Counter<br />
+Comm: 34-956-822-411</strong></p>
+
+<p><strong style="color: unset;">DSN:</strong><span style="color: unset;">&nbsp;314-727-2411</span></p>
+
+<p><strong>Email:</strong>&nbsp;<br />
+navstarotaspacea@us.navy.mil<br />
+<br />
+<strong>Hours of operation:</strong>&nbsp;24/7</p>
+
+</div>
+
+</div><!-- End_Module_38013 --></div>
+</div></div></div>
+        <div class="col-md-9">
+            <div id="dnn_ContentPaneRight"><div class="DnnModule DnnModule-DNN_HTML DnnModule-38008"><a name="38008"></a>
+
+<div class="theme-container title-container">
+    
+    <h2 class="theme-container-header border-bottom">
+        <span id="dnn_ctr38008_dnnTITLE_titleLabel" class="title">Welcome to the Air Terminal Rota, Spain</span>
+
+
+
+    </h2>
+    <div id="dnn_ctr38008_ContentPane" class="theme-container-content"><!-- Start_Module_38008 --><div id="dnn_ctr38008_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38008_HtmlModule_lblContent" class="Normal">
+	
+			
+			<p><b>&nbsp;!Bienvenidos a la Base Naval de Rota, España!</b></p>
+
+<p style="text-align: left;">The Air Terminal is an U.S. Navy operated AMC Terminal. Whether you are stationed in the area or just passing through, Air Terminal personnel are here to assist you with your AMC travel needs. Please understand that our passenger agents have no control over the amount of "Space Available" seats or aircraft departure schedules. Both seats and times are subject to last minute changes. We will make every effort to ensure travel opportunities are posted and provide you with a clean, comfortable Terminal while you are waiting for your flight.</p>
+
+<p><b>Patriot Express: </b>Duty passengers on Travel Orders booked on Patriot Express flights may check-in 24 hours prior to departure. Duty passengers&nbsp;must&nbsp;be in line&nbsp;NO LATER THAN (NLT) 3 hours&nbsp; prior to scheduled departure. Please see our tentative 30 Day Patriot Express Schedule below.</p>
+
+<p><strong>Duty Standby &amp; Space Available Passengers</strong></p>
+
+<p>Roll calls are conducted at the Terminal 3 hours prior to departure. Due to COVID 19 medical screening, it is recommended that passengers arrive approximately one hour prior to roll call time, in order to ensure time for processing.</p>
+
+<p>Space Available seats are often limited, therefor, passenger planning and flexibility is key to Space Available travel.</p>
+
+<p>Passengers are reminded that baggage limitations are: 2 bags per individual, limited to 70 pounds max weight per bag and not to exceed the dimensions of 62 linear inches. Passengers may have one carry-on bag and one personal item, that must fit under any aircraft seat.</p>
+
+<p><br></p>
+
+		
+		
+</div>
+
+</div><!-- End_Module_38008 --></div>
+</div></div></div>
+            <div class="row">
+                <div id="dnn_ContentPaneRightSplitLeft" class="col-md-6 DNNEmptyPane"></div>
+                <div id="dnn_ContentPaneRightSplitRight" class="col-md-6 DNNEmptyPane"></div>
+            </div>
+            <div id="dnn_ContentPaneRight2" class="DNNEmptyPane"></div>
+        </div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane2" class="DNNEmptyPane"></div>
+<div class="container">
+    <div class="row">
+        <div id="dnn_CenterPane_Mid" class="col-md DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_Third1" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Third2" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Third3" class="col-md-4 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_OneThird1" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_TwoThirds1" class="col-md-8 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_TwoThirds2" class="col-md-8 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_OneThird2" class="col-md-4 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_OneThirdTabletSplit" class="col-lg-4 col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_TwoThirdsTabletSplit" class="col-lg-8 col-md-6 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_TwoThirdsTabletSplit2" class="col-lg-8 col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_OneThirdTabletSplit2" class="col-lg-4 col-md-6 DNNEmptyPane"></div>
+    </div>
+</div>
+<div class="columns-outer">
+    <div class="columns-inner">
+        <div class="container container-wide columns">
+        <div class="row">
+            <div id="dnn_ContentPaneGreyLeftColumnsLeft" class="col-md column-left DNNEmptyPane"></div>
+            <div id="dnn_ContentPaneGreyLeftColumnsRight" class="col-md column-right DNNEmptyPane"></div>
+        </div>
+    </div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane3"><div class="DnnModule DnnModule-ImageLinks DnnModule-38011"><a name="38011"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr38011_ContentPane" style="background-color:e9e8e8;"><!-- Start_Module_38011 --><div id="dnn_ctr38011_ModuleContent" class="DNNModuleContent ModImageLinksC">
+	<div id="dnn_ctr38011_View_LinkCollection" class="LayoutVerticalLinkCollection LinkCollection row">
+		
+<style>.ResponsiveLayoutLinkCollection .inner-responsive-38011 img {width: 156px;}</style><div class="col-sm-6 col-md-12"><a href="/Portals/12/AMC Tvl Pg/Passenger Terminals/European Command Terminals/NS Rota Pax Term/afpims/AFPIMS 72 HRS 4 MARCH 2026.pdf?ver=9RKsbfuXVHQU_111-UFUIg%3d%3d" target="_self"><img src="/Portals/12/AMC Tvl Pg/Passenger Terminals/00_PAX Terminal Master Docs/72-Hour schedule little Blue.jpg" alt="72-Hour schedule little Blue.jpg" class="rounded img-fluid" /></a></div><div class="col-sm-6 col-md-12"><a href="/Portals/12/AMC Tvl Pg/Passenger Terminals/European Command Terminals/NS Rota Pax Term/afpims/HISTORICAL 04 MARCH 2026.pdf?ver=FsEO32Y1pkZjFBbyOwnSCQ%3d%3d" target="_self"><img src="/Portals/12/AMC Tvl Pg/Passenger Terminals/00_PAX Terminal Master Docs/Roll Call Blue.jpg" alt="Roll Call Blue.jpg" class="rounded img-fluid" /></a></div>
+	</div>
+
+
+<script>
+    $(document).ready(function () {
+        var spacedEvenlyLayout = $(".ImageSpacedEvenlyLinkCollection");
+
+        $.fn.isInViewport = function () {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+            return elementBottom > viewportTop && elementTop < viewportBottom;
+        };
+
+        var hideHeader = function () {
+
+            if (spacedEvenlyLayout.length) {
+                spacedEvenlyLayout.each(function () {
+                    var layout = '#' + $(this).attr("id");
+                    var module = $(layout).closest(".DnnModule-ImageLinks");
+                    module.find('.heading_wrapper').hide();
+                })
+            }
+        }
+
+        var initAnim = function () {
+            if (spacedEvenlyLayout.isInViewport) {
+                spacedEvenlyLayout.addClass("animate");
+            }
+        }
+
+        var addMargin = function () {
+            if (spacedEvenlyLayout) {
+                spacedEvenlyLayout.first().addClass("first-image-link")
+                spacedEvenlyLayout.last().addClass("last-image-link")
+            }
+        }
+
+        $(window).on('resize scroll', function() {
+            initAnim();
+        });
+
+
+        addMargin()
+        initAnim()
+        hideHeader()
+    })
+</script>
+
+</div><!-- End_Module_38011 --></div>
+</div></div></div>
+<div class="columns-outer-right">
+    <div class="columns-inner-right">
+        <div class="container container-wide columns grey-right-column">
+            <div class="row">
+                <div id="dnn_ContentPaneGreyRightColumnsLeft" class="col-md gray-column-twothirds DNNEmptyPane"></div>
+                <div id="dnn_ColumnPaneGreyRightColumnsRight" class="col-md gray-column-third DNNEmptyPane"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div id="dnn_CenterPane_Mid2" class="col-md"><div class="DnnModule DnnModule-DNN_HTML DnnModule-38002"><a name="38002"></a>
+
+<div class="theme-container">
+    <div id="dnn_ctr38002_ContentPane"><!-- Start_Module_38002 --><div id="dnn_ctr38002_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38002_HtmlModule_lblContent" class="Normal">
+	<p><a href="/AMC-Travel-Site/AMC-Space-Available-Travel-Page/Space-Available-Email-Sign-up-Form/">Sign Up For Space Available&rarr;</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</div><!-- End_Module_38002 --></div>
+</div></div><div class="DnnModule DnnModule-DNN_HTML DnnModule-38003"><a name="38003"></a>
+
+<div class="theme-container title-container">
+    
+    <h2 class="theme-container-header border-bottom">
+        <span id="dnn_ctr38003_dnnTITLE_titleLabel" class="title">Flight Delays/Changes</span>
+
+
+
+    </h2>
+    <div id="dnn_ctr38003_ContentPane" class="theme-container-content"><!-- Start_Module_38003 --><div id="dnn_ctr38003_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38003_HtmlModule_lblContent" class="Normal">
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div>
+<p class="MsoPlainText" style="font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: 20.652px; font-family: Roboto, arial, helvetica, sans-serif; text-align: center;"><br></p></div>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+</div>
+
+</div><!-- End_Module_38003 --></div>
+</div></div><div class="DnnModule DnnModule-DNN_HTML DnnModule-38004"><a name="38004"></a>
+
+<div class="theme-container title-container">
+    
+    <h2 class="theme-container-header border-bottom">
+        <span id="dnn_ctr38004_dnnTITLE_titleLabel" class="title">Local Travel Information</span>
+
+
+
+    </h2>
+    <div id="dnn_ctr38004_ContentPane" class="theme-container-content"><!-- Start_Module_38004 --><div id="dnn_ctr38004_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	<div id="dnn_ctr38004_HtmlModule_lblContent" class="Normal">
+	<p><strong>Naval Station Rota</strong> is located on the Atlantic coast of southern Spain, approximately 70 miles from the Strait of Gibraltar. Rota Is known as the &quot;Gateway to the Mediterranean.&quot; Rota is located across the bay from the romantic city of Cadiz, the oldest city and shipping port in Spain. Nestled in the Andalusian region, the area is famous for its sherry, flamenco&nbsp;and sevillana dancing, and the breeding of prize horses and fighting bulls. Spain offers a wide variety of historical sights and cultural experiences. We hope you are able to take advantage of our location and enjoy exciting adventures and rewarding travels.Distance to nearby travel destinations: Jerez de la Frontera 39 kms., Cadiz 44&nbsp;kms., Sevilla 125 kms., Cordoba 261 kms., Granada 298 kms, and Madrid 651 kms.</p>
+
+<p>Nearby Commercial Airports: Jerez de la Frontera, Sevilla and Malaga.</p>
+
+<p>Nearby Train Stations: El Puerto de Santa Maria and Jerez de la Frontera.</p>
+
+<p><strong>Places to stay.</strong> On-base billeting is very limited. Personnel on orders should have reservations prior to arrival.</p>
+
+<p>Navy Gateway Inn and Suites and Navy Lodge.</p>
+
+<p>Off-base billeting. You may find hotels in Rota, El Puerto de Santa Maria, Jerez de la Frontera and Chipiona. The months of July, August and September are the summer high season and you may experience problems to book&nbsp;rooms unless&nbsp;reservations are made ahead of time.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>USO Information</strong></p>
+
+<p>The USO&nbsp; is located in the hall-way next to the main lobby at the Air Terminal.<br />
+- Hours of operation are: Monday through Friday from 08:30 to 16:30 and AMC flights supported.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>DOD SECTION 508 APPLICABILITY STATEMENT</strong></p>
+
+<p>You have reached the Department of Defense (or Component) Accessibility Link, at which you may report issues of accessibility for persons with disabilities on DoD (or Component) websites. If your issue involves log in access, password recovery, or other technical issues, contact the administrator for the website in question, or your local helpdesk.</p>
+
+<p>The Department of Defense (or Component) is committed to making its information and communication technology accessible to individuals with disabilities in accordance with Section 508 of the Rehabilitation Act of 1973, as amended in 1998 (Section 794d of Title 29, United States Code).</p>
+
+<p>For persons with disabilities experiencing difficulties accessing content on a particular website, please use the DoD (or Component) Section 508 issue reporting tool, available at: <a href="https://dodcio.defense.gov/DoDSection508/Section-508-Form/">HTTPs://dodcio.defense.gov/DoDSection508/Section-508-Form/</a> .</p>
+
+<p>In this tool, please indicate the nature of your accessibility issue or problem and your contact information so we can address your issue or question. For more information about Section 508, please visit the DoD (or Component) Section 508 Website, available at: <a href="https://www.section508.gov/tools/program-manager-listing/">HTTPs://www.section508.gov/tools/program-manager-listing/ </a>.</p>
+
+</div>
+
+</div><!-- End_Module_38004 --></div>
+</div></div></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_FixedThird1" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedThird2" class="col-md-4 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedThird3" class="col-md-4 DNNEmptyPane"></div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane4" class="DNNEmptyPane"></div>
+<div class="container">
+    <div class="row">
+        <div id="dnn_CenterPane_Fourth1" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Fourth2" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Fourth3" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_Fourth4" class="col-md-3 DNNEmptyPane"></div>
+    </div>
+    <div class="row">
+        <div id="dnn_CenterPane_FixedHalf1" class="col-md-6 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedHalf2" class="col-md-6 DNNEmptyPane"></div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane5" class="DNNEmptyPane"></div>
+<div class="container container-wide">
+    <div class="row">
+        <div id="dnn_CenterPane_FixedFourth1" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedFourth2" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedFourth3" class="col-md-3 DNNEmptyPane"></div>
+        <div id="dnn_CenterPane_FixedFourth4" class="col-md-3 DNNEmptyPane"></div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane6" class="DNNEmptyPane"></div>
+<div class="container container-wide">
+    <div class="row">
+        <div id="dnn_BottomPane" class="col-md  DNNEmptyPane"></div>
+    </div>
+</div>
+<div id="dnn_FullBleedPane7" class="DNNEmptyPane"></div>
+<div class="container container-wide">
+    <div class="row">
+        <div id="dnn_CenterPaneWide_Bottom" class="col-md DNNEmptyPane"></div>
+    </div>
+</div>
+
+
+
+    </main>
+
+    <div id="dnn_BottomPaneFull" class="DNNEmptyPane"></div>
+
+    <!--/* //NOSONAR */-->
+<footer id="footer-main">
+    <div id="footer-main-inner">
+        <input class="hidden-input" type="checkbox" id="footer-links1-state" tabindex="-1" aria-hidden="true"/>
+        <nav class="footer-links1" aria-label="Quick links">
+            
+<h1><label for='footer-links1-state'>Quick Links</label></h1>
+<ul class=""><li class=""><a href="/ContactUs.aspx"><span class="text text-link-631">Contact Us</span></a></li><li class=""><a href="https://www.af.mil/Accessibility/"><span class="text text-link-2440">Accessibility</span></a></li><li class=""><a href="https://www.defense.gov/Resources/DOD-Information-Quality-Guidelines/"><span class="text text-link-2441">Information Quality</span></a></li><li class=""><a href="https://open.defense.gov/"><span class="text text-link-2442">Open Government</span></a></li><li class=""><a href="https://www.esd.whs.mil/DD/plainlanguage/"><span class="text text-link-2443">Plain Language</span></a></li><li class=""><a href="https://www.usa.gov/" target="_blank" rel="noopener noreferrer" aria-label="Link to USA.gov opens in a new window"><span class="text text-link-2569">USA.gov</span></a></li><li class=""><a href="https://www.af.mil/Equal-Opportunity/" target="_blank" rel="noopener noreferrer" aria-label="Link to equal opportunity resources opens in a new window"><span class="text text-link-930">Equal Opportunity</span></a></li><li class=""><a href="https://www.compliance.af.mil/" target="_blank" rel="noopener noreferrer" aria-label="Link to FOIA, Privacy Act, and Section 508 accessibility information opens in a new window"><span class="text text-link-876">FOIA | Privacy | Section 508</span></a></li><li class=""><a href="https://www.afinspectorgeneral.af.mil/" target="_blank" rel="noopener noreferrer" aria-label="Link to the Air Force Inspector General website opens in a new window"><span class="text text-link-374">Inspector General</span></a></li><li class=""><a href="https://legalassistance.law.af.mil/AMJAMS/PublicDocket/docket.html" target="_blank" rel="noopener noreferrer" aria-label="Link to JAG court-martial docket opens in a new window"><span class="text text-link-2318">JAG Court-Martial Docket</span></a></li><li class=""><a href="https://www.af.mil/Disclaimer/" target="_blank" rel="noopener noreferrer" aria-label="Information about our website links opens in a new window"><span class="text text-link-984">Link Disclaimer</span></a></li><li class=""><a href="https://www.af.mil/Equal-Opportunity/AS/" target="_blank" rel="noopener noreferrer" aria-label="Link to Air Force No FEAR Act resources opens in a new window"><span class="text text-link-781">No FEAR Act</span></a></li><li class=""><a href="https://www.osi.af.mil/Submit-a-Tip/"><span class="text text-link-1650">OSI Tip Line</span></a></li><li class=""><a href="https://www.resilience.af.mil/" target="_blank" rel="noopener noreferrer" aria-label="Link to Air Force resilience resources opens in a new window"><span class="text text-link-673">Resilience</span></a></li><li class=""><a href="/SiteMapG/"><span class="text text-link-331">Site Map</span></a></li><li class=""><a href="https://www.veteranscrisisline.net/" target="_blank" rel="noopener noreferrer" aria-label="Link to the Veterans Crisis Line opens in a new window"><span class="text text-link-2114">Veterans Crisis Line</span></a></li></ul>
+        </nav>
+        <input class="hidden-input" type="checkbox" id="footer-links2-state" tabindex="-1" aria-hidden="true"/>
+        <nav class="footer-links2" aria-label="Careers links">
+            
+<h1><label for='footer-links2-state'>Careers</label></h1>
+<ul class=""><li class=""><a href="https://www.airforce.com" target="_blank" rel="noopener noreferrer" aria-label="Link to www.airforce.com opens in a new window"><span class="text text-link-1735">Join the Air Force</span></a></li><li class=""><a href="https://www.airforce.com/careers/pay-and-benefits" target="_blank" rel="noopener noreferrer" aria-label="Link to Air Force benefits opens in a new window"><span class="text text-link-1736">Air Force Benefits</span></a></li><li class=""><a href="https://www.af.mil/About-Us/Careers/" target="_blank" rel="noopener noreferrer" aria-label="Link to Air Force careers opens in a new window"><span class="text text-link-1734">Air Force Careers</span></a></li><li class=""><a href="https://www.afrc.af.mil/" target="_blank" rel="noopener noreferrer" aria-label="Link to the Air Force Reserve opens in a new window"><span class="text text-link-1739">Air Force Reserve</span></a></li><li class=""><a href="https://www.ang.af.mil/" target="_blank" rel="noopener noreferrer" aria-label="Link to the Air National Guard opens in a new window"><span class="text text-link-1738">Air National Guard</span></a></li><li class=""><a href="https://afciviliancareers.com/" target="_blank" rel="noopener noreferrer" aria-label="Link to Air Force civilian career options opens in a new window"><span class="text text-link-1737">Civilian Service</span></a></li></ul>
+        </nav>
+        <div class="subscribe">
+            <h1 class="no-mobile">Connect</h1>
+            <label  class="no-mobile">
+                Get Social with Us         
+            </label>
+            <div class="social">
+                <ul class=""><li class=""><a href="https://www.facebook.com/theofficialairmobilitycommand/" target="_blank" rel="noopener noreferrer" aria-label="Facebook icon opens in a new window" title="Facebook icon"><span class="social-icon fab fa-facebook-square social-link-224"></span></a></li><li class=""><a href="https://www.linkedin.com/company/air-mobility-command" target="_blank" rel="noopener noreferrer" aria-label="LinkenIn Icon opens in a new window" title="LinkenIn Icon"><span class="social-icon fa-brands fa-linkedin social-link-2436"></span></a></li><li class=""><a href="https://www.instagram.com/airmobilitycmd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram icon opens in a new window" title="Instagram icon"><span class="social-icon fab fa-instagram social-link-1505"></span></a></li></ul>
+            </div>
+            <div class="subscribe-logo-wrap">
+                <svg class="svg-logo" width="80" height="70" xmlns="http://www.w3.org/2000/svg" >
+                    <g>
+                        <title>U.S. Air Force Logo</title>
+                        <g transform="matrix(0.30864200474303516,0,0,0.30864200474303516,96.66049876374962,86.23049787780087) ">
+                            <polygon points="-216.59274005889893,-115.45912504196167 -239.41073322296143,-98.88313627243042 -211.62673664093018,-78.69417142868042 -202.91378498077393,-105.51613187789917 " class="fill"/>
+                            <polygon points="-207.52175617218018,-75.70814847946167 -184.70473957061768,-59.13417387008667 -161.90072345733643,-75.70814847946167 -184.70473957061768,-92.29115629196167 " class="fill"/>
+                            <polygon points="-195.99575519561768,-126.93117094039917 -279.6467409133911,-187.7141375541687 -260.1197633743286,-147.0781512260437 -232.37673664093018,-126.93117094039917 " class="fill"/>
+                            <polygon points="-187.24075031280518,-153.7301287651062 -304.11372089385986,-238.64913511276245 -284.5887575149536,-198.0051531791687 -194.19973468780518,-132.33217191696167 " class="fill"/>
+                            <polygon points="-287.54475116729736,-271.9891619682312 -301.3247194290161,-243.31515073776245 -258.9787721633911,-212.55013608932495 " class="fill"/>
+                            <polygon points="-166.50472736358643,-105.51613187789917 -157.78475666046143,-78.69417142868042 -130.01070880889893,-98.88313627243042 -152.83077716827393,-115.45912504196167 " class="fill"/>
+                            <polygon points="-137.04073810577393,-126.93117094039917 -109.2976884841919,-147.0781512260437 -89.7787675857544,-187.7141375541687 -173.42074298858643,-126.93117094039917 " class="fill"/>
+                            <polygon points="-182.17178058624268,-153.7301287651062 -175.22274494171143,-132.33217191696167 -84.8327226638794,-198.0051531791687 -65.3028154373169,-238.64913511276245 " class="fill"/>
+                            <polygon points="-81.8727617263794,-271.9891619682312 -110.4467363357544,-212.55013608932495 -68.0937089920044,-243.31515073776245 " class="fill"/>
+                            <path d="m-197.38074,-111.46014c0,-6.997 5.676,-12.677 12.682,-12.677c6.99,0 12.677,5.68 12.677,12.677c0,7.005 -5.687,12.68 -12.677,12.68c-7.006,-0.001 -12.682,-5.675 -12.682,-12.68z" class="fill"/>
+                        </g>
+                    </g>
+                </svg>
+                <span>Official United States Air Force Website</span>
+            </div>
+        </div>
+    </div>
+    <div class="dma-footer">
+        <a target="_blank" rel="noreferrer noopener" href="https://www.web.dma.mil/">Hosted by Defense Media Activity - WEB.mil</a>
+    </div>  
+</footer>
+
+
+</div>
+
+        <input name="ScrollTop" type="hidden" id="ScrollTop" />
+        <input name="__dnnVariable" type="hidden" id="__dnnVariable" autocomplete="off" />
+        <script src="/portals/_default/skins/AirForce3/Assets/js/theme.build.js?cdv=2602" type="text/javascript"></script><script src="/DesktopModules/SharedLibrary/Controls/Banner/JS/GovBanner.js?cdv=2602" type="text/javascript"></script><script src="/Desktopmodules/SharedLibrary/Plugins/bootstrap4/js/bootstrap.bundle.min.js?cdv=2602" type="text/javascript"></script><script src="/DesktopModules/SharedLibrary/ValidatedPlugins/dompurify//purify.min.js?cdv=2602" type="text/javascript"></script>
+    </form>
+    <!--CDF(Javascript|/js/dnncore.js?cdv=2602|DnnBodyProvider|100)--><!--CDF(Javascript|/js/dnn.modalpopup.js?cdv=2602|DnnBodyProvider|50)--><!--CDF(Css|/Resources/Shared/stylesheets/dnndefault/7.0.0/default.css?cdv=2602|DnnPageHeaderProvider|5)--><!--CDF(Css|/DesktopModules/PhotoDashboard/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/PhotoDashboard/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/HotInfo/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/HotInfo/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/HotInfo/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/HotInfo/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/ImageLinks/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Css|/DesktopModules/ImageLinks/module.css?cdv=2602|DnnPageHeaderProvider|10)--><!--CDF(Javascript|/Desktopmodules/SharedLibrary/Plugins/Skin/js/common.js?cdv=2602|DnnBodyProvider|101)--><!--CDF(Javascript|/Desktopmodules/SharedLibrary/Plugins/Mobile-Detect/mobile-detect.min.js?cdv=2602|DnnBodyProvider|100)--><!--CDF(Css|/Desktopmodules/SharedLibrary/Plugins/SocialIcons/css/fa-social-icons.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Css|/Desktopmodules/SharedLibrary/Plugins/Skin/SkipNav/css/skipnav.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Javascript|/Desktopmodules/SharedLibrary/Plugins/spectrum/spectrum.js?cdv=2602|DnnBodyProvider|10)--><!--CDF(Css|/Desktopmodules/SharedLibrary/Plugins/spectrum/spectrum.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Css|/DesktopModules/PhotoDashboard/Layouts/ResponsiveWithFocus/template.css?cdv=2602|DnnPageHeaderProvider|11)--><!--CDF(Css|/portals/_default/skins/AirForce3/Assets/css/theme.css?cdv=2602|DnnPageHeaderProvider|1000)--><!--CDF(Javascript|/portals/_default/skins/AirForce3/Assets/js/theme.build.js?cdv=2602|DnnFormBottomProvider|1)--><!--CDF(Javascript|/DesktopModules/SharedLibrary/Controls/Banner/JS/GovBanner.js?cdv=2602|DnnFormBottomProvider|1)--><!--CDF(Javascript|/Desktopmodules/SharedLibrary/Plugins/bootstrap4/js/bootstrap.bundle.min.js?cdv=2602|DnnFormBottomProvider|100)--><!--CDF(Css|/Desktopmodules/SharedLibrary/Plugins/bootstrap4/css/bootstrap.min.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Css|/Desktopmodules/SharedLibrary/ValidatedPlugins/font-awesome6/css/all.min.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Css|/Desktopmodules/SharedLibrary/ValidatedPlugins/font-awesome6/css/v4-shims.min.css?cdv=2602|DnnPageHeaderProvider|100)--><!--CDF(Javascript|/DesktopModules/SharedLibrary/ValidatedPlugins/dompurify//purify.min.js?cdv=2602|DnnFormBottomProvider|100)--><!--CDF(Javascript|/Resources/libraries/jQuery/03_07_01/jquery.js?cdv=2602|DnnPageHeaderProvider|5)--><!--CDF(Javascript|/Resources/libraries/jQuery-Migrate/03_04_01/jquery-migrate.js?cdv=2602|DnnPageHeaderProvider|6)--><!--CDF(Javascript|/Resources/libraries/jQuery-UI/01_13_03/jquery-ui.min.js?cdv=2602|DnnPageHeaderProvider|10)-->
+    
+</body>
+</html>
