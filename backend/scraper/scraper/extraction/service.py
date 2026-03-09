@@ -127,24 +127,23 @@ class ExtractionService:
                         content_hash = hashlib.sha256(raw_bytes).hexdigest()
                         mime_type = magic.from_buffer(raw_bytes, mime=True)
 
-                        # 3. Deduplication Check
+                        # 3. Deduplication Check (Global)
                         stmt = (
                             select(TerminalDocument)
-                            .where(
-                                TerminalDocument.terminal_id == terminal.id,
-                                TerminalDocument.doc_type == doc_type,
-                            )
-                            .order_by(TerminalDocument.scraped_at.desc())
+                            .where(TerminalDocument.content_hash == content_hash)
                             .limit(1)
                         )
-                        latest_doc = (await self.db.execute(stmt)).scalar_one_or_none()
+                        existing_doc = (
+                            await self.db.execute(stmt)
+                        ).scalar_one_or_none()
 
-                        if latest_doc and latest_doc.content_hash == content_hash:
+                        if existing_doc:
                             logger.info(
-                                "Skipping %s for %s (hash %s unchanged)",
-                                doc_type,
+                                "DUPLICATE HASH DETECTED: Skipping upload & insert for %s - %s. Hash %s already exists in DB (first seen at %s).",
                                 name_display,
+                                doc_type,
                                 content_hash[:8],
+                                existing_doc.scraped_at,
                             )
                             docs_skipped += 1
                             continue
