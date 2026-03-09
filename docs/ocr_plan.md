@@ -14,7 +14,7 @@
 - [x] Create `scraper/ocr/service.py` with `OCRService` `de7cb56`
 
 ### 3. Integration
-- [~] Integrate `OCRService` into `ExtractionService`
+- [x] Integrate `OCRService` into `ExtractionService` `bfaa1c6`
 
 ## Phase 2: Eval Suite
 - [ ] Create eval assets directory structure
