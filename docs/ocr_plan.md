@@ -3,9 +3,9 @@
 ## Phase 1: Core Implementation
 
 ### 1. Dependencies, Configuration, and Schemas
-- [~] Add `google-genai` dependency to `backend/scraper/pyproject.toml`
-- [~] Add `GEMINI_API_KEY` to `Settings` in `scraper/core/config.py`
-- [~] Create `backend/core/core/schemas/flight.py` with extraction schemas
+- [x] Add `google-genai` dependency to `backend/scraper/pyproject.toml` `bda6ae0`
+- [x] Add `GEMINI_API_KEY` to `Settings` in `scraper/core/config.py` `bda6ae0`
+- [x] Create `backend/core/core/schemas/flight.py` with extraction schemas `bda6ae0`
 
 ### 2. OCR Service Layer
 - [ ] Create `scraper/ocr/prompt.py` with system instruction
