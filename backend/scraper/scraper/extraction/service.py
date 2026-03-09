@@ -17,6 +17,7 @@ from scraper.extraction.strategies.amc_text_link import AMCTextLinkExtractor
 from sqlalchemy import select
 
 if TYPE_CHECKING:
+    from scraper.ocr.service import OCRService
     from scraper.storage.s3 import S3Client
     from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -27,10 +28,16 @@ logger = logging.getLogger(__name__)
 class ExtractionService:
     """Service handling the periodic extraction of documents from known terminals."""
 
-    def __init__(self, db_session: AsyncSession, s3_client: S3Client) -> None:
-        """Initialize with a database session and S3 client."""
+    def __init__(
+        self,
+        db_session: AsyncSession,
+        s3_client: S3Client,
+        ocr_service: OCRService | None = None,
+    ) -> None:
+        """Initialize with a database session, S3 client, and optional OCR service."""
         self.db = db_session
         self.s3_client = s3_client
+        self.ocr_service = ocr_service
         self.chain = ExtractionChain(
             strategies=[
                 AMCTextLinkExtractor(),
@@ -171,6 +178,20 @@ class ExtractionService:
                         )
                         docs_stored += 1
                         docs_stored_by_type[doc_type] += 1
+
+                        # 7. OCR Extraction
+                        if self.ocr_service:
+                            try:
+                                await self.ocr_service.process_document(
+                                    document=new_doc,
+                                    raw_bytes=raw_bytes,
+                                )
+                            except Exception:
+                                logger.exception(
+                                    "OCR failed for %s - %s",
+                                    name_display,
+                                    doc_type,
+                                )
 
                     except DocumentDownloadError as e:
                         # WAF block or known broken link. No need for a loud traceback.

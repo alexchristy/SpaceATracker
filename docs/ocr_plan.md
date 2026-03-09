@@ -8,13 +8,13 @@
 - [x] Create `backend/core/core/schemas/flight.py` with extraction schemas `bda6ae0`
 
 ### 2. OCR Service Layer
-- [ ] Create `scraper/ocr/prompt.py` with system instruction
-- [ ] Create `scraper/ocr/client.py` with `GeminiOCRClient`
-- [ ] Create `scraper/ocr/pipeline.py` with `FlightProcessingPipeline`
-- [ ] Create `scraper/ocr/service.py` with `OCRService`
+- [x] Create `scraper/ocr/prompt.py` with system instruction `de7cb56`
+- [x] Create `scraper/ocr/client.py` with `GeminiOCRClient` `de7cb56`
+- [x] Create `scraper/ocr/pipeline.py` with `FlightProcessingPipeline` `de7cb56`
+- [x] Create `scraper/ocr/service.py` with `OCRService` `de7cb56`
 
 ### 3. Integration
-- [ ] Integrate `OCRService` into `ExtractionService`
+- [~] Integrate `OCRService` into `ExtractionService`
 
 ## Phase 2: Eval Suite
 - [ ] Create eval assets directory structure
