@@ -12,6 +12,7 @@ dependencies = [
     "selectolax>=0.4.6",
     "aiobotocore>=3.2.1",
     "python-magic>=0.4.27",
+    "google-genai>=1.0.0",
 ]
 
 [build-system]

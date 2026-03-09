@@ -9,18 +9,18 @@ from core.schemas.extraction import ExtractionResult
 from scraper.extraction.service import ExtractionService
 
 
-@pytest.fixture
+@pytest.fixture()
 def mock_db_session():
     return AsyncMock()
 
 
-@pytest.fixture
+@pytest.fixture()
 def mock_s3_client():
     client = AsyncMock()
     return client
 
 
-@pytest.mark.asyncio
+@pytest.mark.asyncio()
 async def test_extraction_service_global_deduplication(mock_db_session, mock_s3_client):
     """Test that a globally existing content hash skips S3 upload and DB insert."""
     service = ExtractionService(mock_db_session, mock_s3_client)

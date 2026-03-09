@@ -26,5 +26,8 @@ class Settings(BaseSettings):
         "https://www.amc.af.mil/AMC-Travel-Site/AMC-Space-Available-Travel-Page/"
     )
 
+    # OCR / Gemini Settings
+    GEMINI_API_KEY: str = ""
+
 
 settings = Settings()

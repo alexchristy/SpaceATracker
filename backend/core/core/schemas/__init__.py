@@ -1,4 +1,5 @@
 from .extraction import ExtractionResult
+from .flight import FlightExtraction, FlightExtractionList, ProcessedFlight
 from .location import (
     CivilianAirportBase,
     CivilianAirportCreate,
@@ -21,6 +22,8 @@ __all__ = [
     "CivilianAirportRead",
     "CivilianAirportUpdate",
     "ExtractionResult",
+    "FlightExtraction",
+    "FlightExtractionList",
     "LocationBase",
     "LocationCreate",
     "LocationRead",
@@ -29,6 +32,7 @@ __all__ = [
     "MilitaryAirportCreate",
     "MilitaryAirportRead",
     "MilitaryAirportUpdate",
+    "ProcessedFlight",
     "TerminalDocumentCreate",
     "TerminalDocumentRead",
 ]
