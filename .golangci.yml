@@ -1,49 +1,64 @@
 version: "2"
-
 run:
-  timeout: 5m
   modules-download-mode: readonly
   issues-exit-code: 1
-
 linters:
   default: none
   enable:
-    - errcheck		# Every error explicity handled/assigned
-    - govet		# Compiler vetted static analyzer
-    - revive		# Naming conventions, styling, and idomatic rules
-    - staticcheck	# Security, performance, and correctness assertions
-    - unused		# Find dead code blocks, variables, and structs
-    - misspell		# Find typos in comments and strings
-    - nakedret		# Prevent naked returns
+    - bodyclose
+    - contextcheck
+    - errcheck
+    - gocritic
+    - gosec
+    - govet
+    - misspell
+    - nakedret
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - unused
   settings:
-    govet:
-      enable-all: true
-      disable:
-        - fieldalignment
-    revive:
-      severity: error
-      rules:
-        - name: exported
-          arguments: [{disableStutteringCheck: false}]
-        - name: package-comments
-          disabled: true
     gocritic:
       enabled-tags:
         - diagnostic
         - style
         - performance
-
+    govet:
+      disable:
+        - fieldalignment
+      enable-all: true
+    revive:
+      severity: error
+      rules:
+        - name: exported
+          arguments: []
+        - name: package-comments
+          disabled: false
+  exclusions:
+    generated: lax
+    paths:
+      - internal/store/dbgen
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-same-issues: 0
+  new: false
 formatters:
   enable:
-   - gofumpt
-   - goimports
+    - gofumpt
+    - goimports
   settings:
     gofumpt:
       extra-rules: true
     goimports:
-      local-prefixes: services/
-
-issues:
-  exclude-use-default: false
-  max-same-issues: 0
-  new: false
+      local-prefixes:
+        - github.com/alexchristy/SpaceATracker
+  exclusions:
+    generated: lax
+    paths:
+      - internal/store/dbgen
+      - third_party$
+      - builtin$
+      - examples$
