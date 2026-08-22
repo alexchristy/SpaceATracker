@@ -25,23 +25,23 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
-  jobs:
-    build:
+jobs:
+  build:
 
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v6
-        
-        - uses: actions/setup-go@v6
-          with:
-            go-version: stable
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
 
-        - name: Verify build
-          env:
-            CGO_ENABLED: 0
-            GOOS: linux
-            run: |
-              go mod verify
-              go vet ./...
-              go build -o /dev/null ./...
-              go test -run=^$ ./...
+      - name: Verify build
+        env:
+          CGO_ENABLED: 0
+          GOOS: linux
+        run: |
+          go mod verify
+          go vet ./...
+          go build -o /dev/null ./...
+          go test -run=^$ ./...
