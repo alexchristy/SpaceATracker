@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/build.yml"
+      - "**/*.go"
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+  jobs:
+    build:
+
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v6
+        
+        - uses: actions/setup-go@v6
+          with:
+            go-version: stable
+
+        - name: Verify build
+          env:
+            CGO_ENABLED: 0
+            GOOS: linux
+            run: |
+              go mod verify
+              go vet ./...
+              go build -o /dev/null ./...
+              go test -run=^$ ./...

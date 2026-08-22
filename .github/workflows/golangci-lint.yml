@@ -1,0 +1,42 @@
+name: golangci-lint
+
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+    branches:
+      - main 
+    paths:
+      - ".golangci.yml"
+      - ".github/workflows/golangci-lint.yml"
+      - "go.mod"
+      - "go.sum"
+      - "go.work"
+      - "go.work.sum"
+      - "**/*.go"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+  jobs:
+    lint:
+      name: golangci-lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v6
+        
+        - uses: actions/setup-go@v6
+          with:
+            go-version: stable
+
+        - name: golangci-lint
+          uses: golangci/golangci-lint-action@v9
+          with:
+            version: v2.12
+            # Gate only findings introduced since the event base revision
+            args: --new-from-rev=${{ github.event.pull_request.base.sha || github.event.before }} ./cmd/... ./internal/...
