@@ -1,5 +1,7 @@
 # SpaceATracker
 
+[![Build](https://github.com/alexchristy/SpaceATracker/actions/workflows/build.yml/badge.svg)](https://github.com/alexchristy/SpaceATracker/actions/workflows/build.yml) [![golangci-lint](https://github.com/alexchristy/SpaceATracker/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/alexchristy/SpaceATracker/actions/workflows/golangci-lint.yml) [![govulncheck](https://github.com/alexchristy/SpaceATracker/actions/workflows/govulncheck.yml/badge.svg)](https://github.com/alexchristy/SpaceATracker/actions/workflows/govulncheck.yml) [![Unit Tests](https://github.com/alexchristy/SpaceATracker/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/alexchristy/SpaceATracker/actions/workflows/unit-tests.yml) [![Integration Tests](https://github.com/alexchristy/SpaceATracker/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/alexchristy/SpaceATracker/actions/workflows/integration-tests.yml)
+
 Discover, track, and fly Space Available flights.
 
 ## Architecture Overview
