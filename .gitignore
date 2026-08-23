@@ -27,6 +27,14 @@ go.work.sum
 # env file
 .env
 
+# Terraform files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+*.lock.hcl
+
 # Misc files
 .DS_Store
 
