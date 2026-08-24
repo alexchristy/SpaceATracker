@@ -31,25 +31,24 @@ import (
 )
 
 func main() {
-	if err := run(); err != nil {
-		slog.Error("fatal execution error", slog.Any("error", err))
+	logger := setupLogger()
+	logger.Info("logger configured")
+
+	if err := run(logger); err != nil {
+		logger.Error("fatal execution error", slog.Any("error", err))
 		os.Exit(1)
 	}
 }
 
-func run() error {
-	// Logging
-	logger := setupLogger()
-	logger.Info("logger configured")
-
+func run(logger *slog.Logger) error {
 	// Env
 	cfg, err := loadEnv()
 	if err != nil {
 		return fmt.Errorf("configure environment: %w", err)
 	}
-	slog.Info("loaded config",
-		slog.String("TERMINAL_INDEX_URL", cfg.TerminalIndexURL),
-		slog.Duration("DISCOVERY_INTERVAL", cfg.DiscoveryInterval),
+	logger.Info("loaded config",
+		slog.String("terminalIndexUrl", cfg.TerminalIndexURL),
+		slog.Duration("discoveryInterval", cfg.DiscoveryInterval),
 	)
 
 	// Initialize context
@@ -89,7 +88,7 @@ func run() error {
 	var wg sync.WaitGroup
 
 	// Service: Terminal Disovery
-	discoveryLogger := logger.With("worker", "discovery")
+	discoveryLogger := logger.With(slog.String("worker", "discovery"))
 	discoverySvc := discovery.NewService(
 		db,
 		scraperClient,

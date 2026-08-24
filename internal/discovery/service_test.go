@@ -3,7 +3,6 @@ package discovery_test
 import (
 	"context"
 	"errors"
-	"io"
 	"log/slog"
 	"testing"
 
@@ -79,7 +78,7 @@ func TestExecute_Error(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+			discardLogger := slog.New(slog.DiscardHandler)
 			spy := telemetrytest.NewSpyEngine()
 			worker := discovery.NewService(
 				tt.store,

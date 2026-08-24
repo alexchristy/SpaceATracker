@@ -3,7 +3,6 @@ package worker
 import (
 	"context"
 	"errors"
-	"io"
 	"log/slog"
 	"sync/atomic"
 	"testing"
@@ -25,7 +24,7 @@ func TestTimedWorker_Run_ErrorThreshold(t *testing.T) {
 		return nil
 	}
 
-	discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	discardLogger := slog.New(slog.DiscardHandler)
 	cfg := TimedWorkerConfig{
 		Logger:   discardLogger,
 		Interval: 1 * time.Millisecond,
@@ -70,7 +69,7 @@ func TestTimedWorker_Run_ErrorThresholdReset(t *testing.T) {
 		return nil
 	}
 
-	discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	discardLogger := slog.New(slog.DiscardHandler)
 	cfg := TimedWorkerConfig{
 		Logger:   discardLogger,
 		Interval: 1 * time.Millisecond,
@@ -105,7 +104,7 @@ func TestTimedWorker_Run_CanceledContext(t *testing.T) {
 	ctx, cancel := context.WithCancel(t.Context())
 	defer cancel()
 
-	discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	discardLogger := slog.New(slog.DiscardHandler)
 	task := func(taskCtx context.Context) error {
 		return nil
 	}
@@ -140,7 +139,7 @@ func TestTimedWorker_Run_StartupCanceledContext(t *testing.T) {
 	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 
-	discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	discardLogger := slog.New(slog.DiscardHandler)
 	var executions int
 	task := func(taskCtx context.Context) error {
 		executions++
@@ -164,7 +163,7 @@ func TestTimedWorker_Run_StartupCanceledContext(t *testing.T) {
 func TestTimedWorker_Run_StartupError(t *testing.T) {
 	t.Parallel()
 
-	discardLogger := slog.New(slog.NewTextHandler(io.Discard, nil))
+	discardLogger := slog.New(slog.DiscardHandler)
 	var executions int
 	task := func(taskCtx context.Context) error {
 		executions++

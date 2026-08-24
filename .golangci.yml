@@ -18,6 +18,7 @@ linters:
     - sqlclosecheck
     - staticcheck
     - unused
+    - sloglint
   settings:
     gocritic:
       enabled-tags:
@@ -35,6 +36,18 @@ linters:
           arguments: []
         - name: package-comments
           disabled: false
+    sloglint:
+      no-global: "all"
+      context: "scope"
+      static-msg: true
+      msg-style: "lowercased"
+      attr-only: true
+      key-naming-case: "camel"
+      forbidden-keys:
+        - time
+        - level
+        - msg
+        - source
   exclusions:
     generated: lax
     paths:
