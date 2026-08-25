@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for spaceatracker on 2026-08-24T18:59:04+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'spaceatracker'
+primary_region = 'iad'
+kill_signal = 'SIGTERM'
+kill_timeout = '30s'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[deploy]
+  release_command = "sh -c '/bin/migrate -path /db/migrations -database \"$DATABASE_URI\" up'"
+
+[env]
+  DISCOVERY_INTERVAL = '1h'
+  OTEL_EXPORTER_OTLP_PROTOCOL = 'http/protobuf'
+  OTEL_RESOURCE_ATTRIBUTES = 'service.name=spaceatracker,service.version=0.1.0,deployment.environment=production'
+  TERMINAL_INDEX_URL = 'https://www.amc.af.mil/AMC-Travel-Site/AMC-Space-Available-Travel-Page/'
+
+[processes]
+  worker = '/bin/worker'
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
