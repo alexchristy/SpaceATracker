@@ -35,7 +35,7 @@ func main() {
 	logger.Info("logger configured")
 
 	if err := run(logger); err != nil {
-		logger.Error("fatal execution error", slog.Any("error", err))
+		logger.Error("fatal worker execution error", slog.Any("error", err))
 		os.Exit(1)
 	}
 }
