@@ -7,16 +7,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "go.mod"
-      - "go.sum"
-      - ".github/workflows/build.yml"
-      - "**/*.go"
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
 
 permissions:
   contents: read

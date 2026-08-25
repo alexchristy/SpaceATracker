@@ -6,15 +6,7 @@ on:
       - main 
   pull_request:
     branches:
-      - main 
-    paths:
-      - ".golangci.yml"
-      - ".github/workflows/golangci-lint.yml"
-      - "go.mod"
-      - "go.sum"
-      - "go.work"
-      - "go.work.sum"
-      - "**/*.go"
+      - main
 
 permissions:
   contents: read
