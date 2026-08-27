@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/alexchristy/SpaceATracker/internal/telemetry"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 )
 
 // DiscoveryServiceName is the canonical name of the discovery service in logging and telemetry spans.
@@ -25,27 +27,33 @@ type Scraper interface {
 
 // Service orchestrates terminal discovery, URL normalization, and storage.
 type Service struct {
-	store     Store
-	scraper   Scraper
-	telemetry telemetry.Engine
-	logger    *slog.Logger
+	store   Store
+	scraper Scraper
+	tracer  trace.Tracer
+	logger  *slog.Logger
 }
 
 // NewService constructs a discovery service with required dependencies.
-func NewService(store Store, scraper Scraper, tel telemetry.Engine, logger *slog.Logger) *Service {
+func NewService(store Store, scraper Scraper, tracer trace.Tracer, logger *slog.Logger) *Service {
 	return &Service{
-		store:     store,
-		scraper:   scraper,
-		telemetry: tel,
-		logger:    logger,
+		store:   store,
+		scraper: scraper,
+		tracer:  tracer,
+		logger:  logger,
 	}
 }
 
 // Execute fetches targetURL, discovers active Space-A terminals, and saves normalized results.
 func (s *Service) Execute(ctx context.Context, targetURL string) (err error) {
 	// Start telemetry trace
-	ctx, done := s.telemetry.StartSpan(ctx, DiscoveryServiceName+".Execute")
-	defer done(&err)
+	ctx, span := s.tracer.Start(ctx, DiscoveryServiceName+".Execute")
+	defer func() {
+		if err != nil {
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+		}
+		span.End()
+	}()
 
 	// Fetch webpage HTML
 	htmlBytes, err := s.scraper.Get(ctx, targetURL)
@@ -60,8 +68,10 @@ func (s *Service) Execute(ctx context.Context, targetURL string) (err error) {
 		return fmt.Errorf("parsing terminal index page: %w", err)
 	}
 
-	// Record number terminals found
-	s.telemetry.RecordItemCount(ctx, DiscoveryServiceName, "terminal_urls", int64(len(terminalURLs)))
+	// Record number of discovered terminals
+	span.SetAttributes(
+		attribute.Int("terminals_found", len(terminalURLs)),
+	)
 
 	// Normalize URLs
 	urlNormalizer, err := NewURLNormalizer(targetURL)
@@ -71,7 +81,6 @@ func (s *Service) Execute(ctx context.Context, targetURL string) (err error) {
 
 	// Generally about 65 terminals
 	normalizedURLs := make([]string, 0, 65)
-
 	for _, terminalURL := range terminalURLs {
 		normalizedURLs = append(normalizedURLs, urlNormalizer.Normalize(terminalURL))
 	}

@@ -6,8 +6,10 @@ import (
 	"log/slog"
 	"testing"
 
+	"go.opentelemetry.io/otel/codes"
+
 	"github.com/alexchristy/SpaceATracker/internal/discovery"
-	"github.com/alexchristy/SpaceATracker/internal/telemetry/telemetrytest"
+	"github.com/alexchristy/SpaceATracker/internal/telemetrytest"
 )
 
 type AlwaysStores struct{}
@@ -79,11 +81,11 @@ func TestExecute_Error(t *testing.T) {
 			t.Parallel()
 
 			discardLogger := slog.New(slog.DiscardHandler)
-			spy := telemetrytest.NewSpyEngine()
+			recorder, tracer := telemetrytest.SetupTracer(t)
 			worker := discovery.NewService(
 				tt.store,
 				tt.scraper,
-				spy,
+				tracer,
 				discardLogger,
 			)
 
@@ -97,9 +99,22 @@ func TestExecute_Error(t *testing.T) {
 				t.Errorf("Execute(%q) error = %v, want %v", tt.targetURL, err, tt.wantSentinel)
 			}
 
-			// Should record one span every execution
-			if spy.StartSpanInvocations != 1 {
-				t.Errorf("Execute(%q) stated spans %d, want %d", tt.targetURL, spy.StartSpanInvocations, 1)
+			// Verify one span recorded
+			spans := recorder.Ended()
+			if got, want := len(spans), 1; got != want {
+				t.Fatalf("Execture() recorded %d spans, want %d", got, want)
+			}
+
+			span := spans[0]
+
+			// Assert span name
+			if got, want := span.Name(), discovery.DiscoveryServiceName+".Execute"; got != want {
+				t.Errorf("Execute() span name %q, want %q", got, want)
+			}
+
+			// Assert the span status is Error
+			if got, want := span.Status().Code, codes.Error; got != want {
+				t.Errorf("Execute() span status code %v, want %v", got, want)
 			}
 		})
 	}

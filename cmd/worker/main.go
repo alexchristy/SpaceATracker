@@ -13,20 +13,16 @@ import (
 
 	"go.opentelemetry.io/otel"
 
-	"go.opentelemetry.io/otel/metric"
-	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	"go.opentelemetry.io/otel/trace"
 
-	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
 
 	"github.com/alexchristy/SpaceATracker/internal/client"
 	"github.com/alexchristy/SpaceATracker/internal/config"
 	"github.com/alexchristy/SpaceATracker/internal/discovery"
 	"github.com/alexchristy/SpaceATracker/internal/store"
-	"github.com/alexchristy/SpaceATracker/internal/telemetry"
 	"github.com/alexchristy/SpaceATracker/internal/worker"
 )
 
@@ -56,7 +52,7 @@ func run(logger *slog.Logger) error {
 	defer stop()
 
 	// Configure telemetry
-	meter, tracer, shutdownTelemetry, err := setupOpenTelemetry(ctx)
+	tracer, shutdownTelemetry, err := setupOpenTelemetry(ctx)
 	if err != nil {
 		return fmt.Errorf("configure telemetry: %w", err)
 	}
@@ -68,21 +64,15 @@ func run(logger *slog.Logger) error {
 		}
 	}()
 
-	// Create telemetry engine
-	telemetryAdapter, err := telemetry.NewOTelAdapter(meter, tracer)
-	if err != nil {
-		return fmt.Errorf("create telemetry engine: %w", err)
-	}
-
 	// Connect to database
 	pool, err := store.NewPostgresPool(ctx, cfg.DatabaseURI)
 	if err != nil {
 		return fmt.Errorf("initialize database: %w", err)
 	}
-	db := store.NewPostgresAdapter(pool, telemetryAdapter)
+	db := store.NewPostgresAdapter(pool, tracer)
 
 	// Connect to scraper API
-	scraperClient := client.NewZyte(client.ZyteApiURL, cfg.ScraperApiKey, telemetryAdapter)
+	scraperClient := client.NewZyte(client.ZyteApiURL, cfg.ScraperApiKey, tracer)
 
 	// Initialize wait group
 	var wg sync.WaitGroup
@@ -92,7 +82,7 @@ func run(logger *slog.Logger) error {
 	discoverySvc := discovery.NewService(
 		db,
 		scraperClient,
-		telemetryAdapter,
+		tracer,
 		discoveryLogger,
 	)
 	discoveryWorkerCfg := worker.TimedWorkerConfig{
@@ -155,7 +145,7 @@ func loadEnv() (config.Config, error) {
 	return cfg, nil
 }
 
-func setupOpenTelemetry(ctx context.Context) (metric.Meter, trace.Tracer, func(context.Context) error, error) {
+func setupOpenTelemetry(ctx context.Context) (trace.Tracer, func(context.Context) error, error) {
 	// Env vars
 	res, err := resource.New(
 		ctx,
@@ -163,13 +153,13 @@ func setupOpenTelemetry(ctx context.Context) (metric.Meter, trace.Tracer, func(c
 		resource.WithTelemetrySDK(),
 	)
 	if err != nil {
-		return nil, nil, nil, fmt.Errorf("create telemetry resource: %w", err)
+		return nil, nil, fmt.Errorf("create telemetry resource: %w", err)
 	}
 
 	// Configure traces
 	traceExporter, err := otlptracehttp.New(ctx)
 	if err != nil {
-		return nil, nil, nil, fmt.Errorf("create telemetry trace exporter: %w", err)
+		return nil, nil, fmt.Errorf("create telemetry trace exporter: %w", err)
 	}
 	tracerProvider := sdktrace.NewTracerProvider(
 		sdktrace.WithResource(res),
@@ -177,36 +167,15 @@ func setupOpenTelemetry(ctx context.Context) (metric.Meter, trace.Tracer, func(c
 	)
 	otel.SetTracerProvider(tracerProvider)
 
-	// Configure metrics
-	metricExporter, err := otlpmetrichttp.New(ctx)
-	if err != nil {
-		return nil, nil, nil, fmt.Errorf("create telemetry metric exporter: %w", err)
-	}
-	meterProvider := sdkmetric.NewMeterProvider(
-		sdkmetric.WithResource(res),
-		sdkmetric.WithReader(sdkmetric.NewPeriodicReader(metricExporter)),
-	)
-	otel.SetMeterProvider(meterProvider)
-
-	// Extract instruments
-	meter := meterProvider.Meter("github.com/alexchristy/SpaceATracker")
+	// Extract instrument
 	tracer := tracerProvider.Tracer("github.com/alexchristy/SpaceATracker")
 
 	shutdown := func(shutdownCtx context.Context) error {
-		errs := make([]error, 0, 2)
 		if err := tracerProvider.Shutdown(shutdownCtx); err != nil {
-			errs = append(errs, err)
+			return fmt.Errorf("shutdown telemetry provider: %w", err)
 		}
-		if err := meterProvider.Shutdown(shutdownCtx); err != nil {
-			errs = append(errs, err)
-		}
-
-		if len(errs) > 0 {
-			return fmt.Errorf("shutdown telemetry providers: %v", errs)
-		}
-
 		return nil
 	}
 
-	return meter, tracer, shutdown, nil
+	return tracer, shutdown, nil
 }

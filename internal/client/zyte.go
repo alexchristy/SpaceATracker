@@ -9,7 +9,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/alexchristy/SpaceATracker/internal/telemetry"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 )
 
 // ZyteClientName is the canonical name of the zyte API client for logging and telemetry spans.
@@ -22,11 +24,11 @@ type zyteClient struct {
 	apiURL     string
 	authHeader string
 	httpClient *http.Client
-	telemetry  telemetry.Engine
+	tracer     trace.Tracer
 }
 
 // NewZyte returns a new zyte API client for web scraping.
-func NewZyte(apiURL, apiKey string, tel telemetry.Engine) *zyteClient {
+func NewZyte(apiURL, apiKey string, tracer trace.Tracer) *zyteClient {
 	auth := base64.StdEncoding.EncodeToString([]byte(apiKey + ":"))
 
 	return &zyteClient{
@@ -35,7 +37,7 @@ func NewZyte(apiURL, apiKey string, tel telemetry.Engine) *zyteClient {
 		httpClient: &http.Client{
 			Timeout: 15 * time.Second,
 		},
-		telemetry: tel,
+		tracer: tracer,
 	}
 }
 
@@ -54,8 +56,18 @@ type zyteResponse struct {
 // Get returns HTML from the target URL.
 func (c *zyteClient) Get(ctx context.Context, targetURL string) (decodedBytes []byte, err error) {
 	// Start telemetry trace
-	ctx, done := c.telemetry.StartSpan(ctx, ZyteClientName+".Get")
-	defer done(&err)
+	ctx, span := c.tracer.Start(ctx, ZyteClientName+".Get")
+	defer func() {
+		if err != nil {
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+		}
+		span.End()
+	}()
+
+	span.SetAttributes(
+		attribute.String("target_url", targetURL),
+	)
 
 	reqBody := zyteRequest{
 		URL:              targetURL,
@@ -102,6 +114,10 @@ func (c *zyteClient) Get(ctx context.Context, targetURL string) (decodedBytes []
 	if err != nil {
 		return nil, fmt.Errorf("decode base64 zyte scraper response body: %w", err)
 	}
+
+	span.SetAttributes(
+		attribute.Int("response_body_length", len(decodedBytes)),
+	)
 
 	return decodedBytes, nil
 }
