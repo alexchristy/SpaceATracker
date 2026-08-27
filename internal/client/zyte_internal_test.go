@@ -12,7 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/alexchristy/SpaceATracker/internal/telemetry/telemetrytest"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
+
+	"github.com/alexchristy/SpaceATracker/internal/telemetrytest"
 )
 
 func TestZyte_Get_Success(t *testing.T) {
@@ -49,8 +52,8 @@ func TestZyte_Get_Success(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	spy := telemetrytest.NewSpyEngine()
-	client := NewZyte(ts.URL, fakeApiToken, spy)
+	recorder, tracer := telemetrytest.SetupTracer(t)
+	client := NewZyte(ts.URL, fakeApiToken, tracer)
 
 	got, err := client.Get(context.Background(), "https://fake.url")
 	if err != nil {
@@ -62,8 +65,36 @@ func TestZyte_Get_Success(t *testing.T) {
 	}
 
 	// Verify telemetry span was recorded
-	if spy.StartSpanInvocations != 1 {
-		t.Errorf("Get() started spans %d, want %d", spy.StartSpanInvocations, 1)
+	spans := recorder.Ended()
+	if got, want := len(spans), 1; got != want {
+		t.Fatalf("Get() recorded %d spans, want %d", got, want)
+	}
+
+	span := spans[0]
+
+	// Assert span name
+	if got, want := span.Name(), ZyteClientName+".Get"; got != want {
+		t.Errorf("Get() span name %q, want %q", got, want)
+	}
+
+	// Assert span status
+	if got, want := span.Status().Code, codes.Unset; got != want {
+		t.Errorf("Get() span status code %v, want %v", got, want)
+	}
+
+	// Assert span attributes
+	var foundAttr attribute.KeyValue
+	for _, attr := range span.Attributes() {
+		if attr.Key == "response_body_length" {
+			foundAttr = attr
+			break
+		}
+	}
+
+	// Assert the attribute recorded the correct value
+	wantAttr := attribute.Int("response_body_length", len(wantResponseBody))
+	if got, want := foundAttr, wantAttr; got != want {
+		t.Errorf("Get() set span attribute %v, want %v", got, want)
 	}
 }
 
@@ -137,13 +168,33 @@ func TestZyte_Get_Error(t *testing.T) {
 			ts := httptest.NewServer(http.HandlerFunc(tt.mockServer))
 			defer ts.Close()
 
-			client := NewZyte(ts.URL, "fakeApiToken", telemetrytest.NewSpyEngine())
+			recorder, tracer := telemetrytest.SetupTracer(t)
+
+			client := NewZyte(ts.URL, "fakeApiToken", tracer)
 			ctx, cancel := context.WithTimeout(context.Background(), tt.ctxTimeout)
 			defer cancel()
 
 			_, err := client.Get(ctx, "https://fake.url")
 			if err == nil {
 				t.Fatal("Get() error = nil, wantErr true")
+			}
+
+			// Verify a span is recorded
+			spans := recorder.Ended()
+			if got, want := len(spans), 1; got != want {
+				t.Fatalf("Get() recorded %d spans, want %d", got, want)
+			}
+
+			span := spans[0]
+
+			// Assert span name
+			if got, want := span.Name(), ZyteClientName+".Get"; got != want {
+				t.Errorf("Get() span name %q, want %q", got, want)
+			}
+
+			// Assert the span status is Error
+			if got, want := span.Status().Code, codes.Error; got != want {
+				t.Errorf("Get() span status code %v, want %v", got, want)
 			}
 		})
 	}

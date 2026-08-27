@@ -17,9 +17,10 @@ import (
 	"github.com/testcontainers/testcontainers-go/modules/postgres"
 	"github.com/testcontainers/testcontainers-go/network"
 	"github.com/testcontainers/testcontainers-go/wait"
+	"go.opentelemetry.io/otel/codes"
 
 	"github.com/alexchristy/SpaceATracker/internal/store"
-	"github.com/alexchristy/SpaceATracker/internal/telemetry/telemetrytest"
+	"github.com/alexchristy/SpaceATracker/internal/telemetrytest"
 )
 
 var (
@@ -134,8 +135,8 @@ func setupTest(t *testing.T) *pgxpool.Pool {
 
 func TestPostgres_SaveTerminalURLs_Success(t *testing.T) {
 	pool := setupTest(t)
-	spy := telemetrytest.NewSpyEngine()
-	adapter := store.NewPostgresAdapter(pool, spy)
+	recorder, tracer := telemetrytest.SetupTracer(t)
+	adapter := store.NewPostgresAdapter(pool, tracer)
 
 	inputs := []string{"https://fake1.url", "https://fake2.url"}
 	if err := adapter.SaveTerminalURLs(t.Context(), inputs); err != nil {
@@ -152,9 +153,10 @@ func TestPostgres_SaveTerminalURLs_Success(t *testing.T) {
 		t.Errorf("row count = %d, want %d", got, want)
 	}
 
-	// Ensure a telemetry span was recorded
-	if spy.StartSpanInvocations != 1 {
-		t.Errorf("SaveTerminalURLs(%q) started spans %d, want %d", inputs, spy.StartSpanInvocations, 1)
+	// Verify a telemetry span was recorded
+	spans := recorder.Ended()
+	if got, want := len(spans), 1; got != want {
+		t.Fatalf("Get() recorded %d spans, want %d", got, want)
 	}
 }
 
@@ -171,8 +173,8 @@ func TestPostgres_NewPostgresPool_Error(t *testing.T) {
 
 func TestPostgres_SaveTerminalURLs_ContextCanceled(t *testing.T) {
 	pool := setupTest(t)
-	spy := telemetrytest.NewSpyEngine()
-	adapter := store.NewPostgresAdapter(pool, spy)
+	recorder, tracer := telemetrytest.SetupTracer(t)
+	adapter := store.NewPostgresAdapter(pool, tracer)
 
 	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
@@ -188,8 +190,21 @@ func TestPostgres_SaveTerminalURLs_ContextCanceled(t *testing.T) {
 	}
 
 	// Ensure that a telemetry span was recorded
-	if spy.StartSpanInvocations != 1 {
-		t.Errorf("SaveTerminalURLs(%q) started spans %d, want %d", inputs, spy.StartSpanInvocations, 1)
+	spans := recorder.Ended()
+	if got, want := len(spans), 1; got != want {
+		t.Fatalf("SaveTerminalURLs() recorded %d spans, want %d", got, want)
+	}
+
+	span := spans[0]
+
+	// Assert span name
+	if got, want := span.Name(), store.PostgresAdapterName+".SaveTerminalURLs"; got != want {
+		t.Errorf("SaveTerminalURLs() span name %q, want %q", got, want)
+	}
+
+	// Assert span error status
+	if got, want := span.Status().Code, codes.Error; got != want {
+		t.Errorf("SaveTerminalURLs() span status code %v, want %v", got, want)
 	}
 }
 
@@ -199,8 +214,8 @@ func TestPostgres_SaveTerminals_ConnectionClosed(t *testing.T) {
 		t.Fatalf("create postgres connection pool: %v", err)
 	}
 
-	spy := telemetrytest.NewSpyEngine()
-	adapter := store.NewPostgresAdapter(pool, spy)
+	recorder, tracer := telemetrytest.SetupTracer(t)
+	adapter := store.NewPostgresAdapter(pool, tracer)
 
 	// Close pool to simulate closed connection
 	pool.Close()
@@ -213,7 +228,20 @@ func TestPostgres_SaveTerminals_ConnectionClosed(t *testing.T) {
 	}
 
 	// Ensure that a telemetry span was recorded
-	if spy.StartSpanInvocations != 1 {
-		t.Errorf("SaveTerminalsURLs(%q) started spans %d, want %d", inputs, spy.StartSpanInvocations, 1)
+	spans := recorder.Ended()
+	if got, want := len(spans), 1; got != want {
+		t.Fatalf("SaveTerminalURLs() recorded %d spans, want %d", got, want)
+	}
+
+	span := spans[0]
+
+	// Assert span name
+	if got, want := span.Name(), store.PostgresAdapterName+".SaveTerminalURLs"; got != want {
+		t.Errorf("SaveTerminalURLs() span name %q, want %q", got, want)
+	}
+
+	// Assert span error status
+	if got, want := span.Status().Code, codes.Error; got != want {
+		t.Errorf("SaveTerminalURLs() span status code %v, want %v", got, want)
 	}
 }

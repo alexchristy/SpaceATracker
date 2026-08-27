@@ -5,9 +5,10 @@ import (
 	"fmt"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 
 	"github.com/alexchristy/SpaceATracker/internal/store/dbgen"
-	"github.com/alexchristy/SpaceATracker/internal/telemetry"
 )
 
 // PostgresAdapterName is the canonical name used for logging and telemetry spans.
@@ -25,17 +26,17 @@ func NewPostgresPool(ctx context.Context, connStr string) (*pgxpool.Pool, error)
 
 // PostgresAdapter orchestrates queries and interactions with the database layer.
 type PostgresAdapter struct {
-	db        *pgxpool.Pool
-	queries   *dbgen.Queries
-	telemetry telemetry.Engine
+	db      *pgxpool.Pool
+	queries *dbgen.Queries
+	tracer  trace.Tracer
 }
 
 // NewPostgresAdapter constructs a postgres adapter with required dependencies.
-func NewPostgresAdapter(pool *pgxpool.Pool, tel telemetry.Engine) *PostgresAdapter {
+func NewPostgresAdapter(pool *pgxpool.Pool, tracer trace.Tracer) *PostgresAdapter {
 	return &PostgresAdapter{
-		db:        pool,
-		queries:   dbgen.New(pool),
-		telemetry: tel,
+		db:      pool,
+		queries: dbgen.New(pool),
+		tracer:  tracer,
 	}
 }
 
@@ -44,8 +45,14 @@ func NewPostgresAdapter(pool *pgxpool.Pool, tel telemetry.Engine) *PostgresAdapt
 // URLs are stored in the `discovered_terminals` table.
 func (p *PostgresAdapter) SaveTerminalURLs(ctx context.Context, terminalURLs []string) (err error) {
 	// Start telemetry trace
-	ctx, done := p.telemetry.StartSpan(ctx, PostgresAdapterName+".SaveTerminalURLs")
-	defer done(&err)
+	ctx, span := p.tracer.Start(ctx, PostgresAdapterName+".SaveTerminalURLs")
+	defer func() {
+		if err != nil {
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+		}
+		span.End()
+	}()
 
 	batch := p.queries.UpsertTerminals(ctx, terminalURLs)
 	defer func() {
