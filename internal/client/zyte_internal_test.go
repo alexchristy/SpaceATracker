@@ -12,9 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/alexchristy/SpaceATracker/internal/telemetrytest"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
+
+	"github.com/alexchristy/SpaceATracker/internal/telemetrytest"
 )
 
 func TestZyte_Get_Success(t *testing.T) {
