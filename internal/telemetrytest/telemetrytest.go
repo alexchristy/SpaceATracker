@@ -1,3 +1,4 @@
+// Package telemetrytest provides utilities to streamline OpenTelemetry testing.
 package telemetrytest
 
 import (
@@ -10,6 +11,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
+// SetupTracer creates a mock OpenTelemetry span recorder and tracer.
 func SetupTracer(t *testing.T) (*tracetest.SpanRecorder, trace.Tracer) {
 	t.Helper()
 
