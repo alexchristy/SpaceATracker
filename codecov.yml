@@ -18,9 +18,9 @@ coverage:
         threshold: 0%
 
 ignore:
-  - "cmd"
-  - "internal/store/dbgen" # Auto generatred sqlc code
-  - "internal/telemetrytest"
+  - "cmd/"
+  - "internal/store/dbgen/" # Auto generatred sqlc code
+  - "internal/telemetrytest/"
 
 flags:
   unittests:
@@ -30,7 +30,8 @@ flags:
 
   integration:
     paths:
-      - "internal/store"
+      - "internal/store/"
+    carryforward: true
 
 comment:
   layout: "reach, diff, flags, files"
