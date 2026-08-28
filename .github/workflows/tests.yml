@@ -32,7 +32,7 @@ jobs:
       - name: Upload unit test coverage to Codecov
         uses: codecov/codecov-action@v7
         with:
-          file: ./coverage.unit.out
+          files: ./coverage.unit.out
           flags: unittests
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
@@ -53,7 +53,7 @@ jobs:
       - name: Upload integration test coverage to Codecov
         uses: codecov/codecov-action@v7
         with:
-          file: ./coverage.integration.out
+          files: ./coverage.integration.out
           flags: integration
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
