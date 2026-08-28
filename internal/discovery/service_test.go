@@ -40,6 +40,42 @@ func (n NeverScrapes) Get(ctx context.Context, url string) ([]byte, error) {
 	return nil, n.err
 }
 
+func TestExecute_Success(t *testing.T) {
+	t.Parallel()
+
+	discardLogger := slog.New(slog.DiscardHandler)
+	recorder, tracer := telemetrytest.SetupTracer(t)
+	worker := discovery.NewService(
+		AlwaysStores{},
+		AlwaysScrapes{},
+		tracer,
+		discardLogger,
+	)
+
+	err := worker.Execute(context.Background(), "https://fake.url")
+	if err != nil {
+		t.Fatalf("Execute() unexpected error: %v", err)
+	}
+
+	// Verify span was recorded
+	spans := recorder.Ended()
+	if got, want := len(spans), 1; got != want {
+		t.Fatalf("Execute() recorded %d spans, want %d", got, want)
+	}
+
+	span := spans[0]
+
+	// Assert span name
+	if got, want := span.Name(), discovery.DiscoveryServiceName+".Execute"; got != want {
+		t.Errorf("Execute() span name %q, want %q", got, want)
+	}
+
+	// Assert span status
+	if got, want := span.Status().Code, codes.Unset; got != want {
+		t.Errorf("Execute() span status code %v, want %v", got, want)
+	}
+}
+
 func TestExecute_Error(t *testing.T) {
 	t.Parallel()
 
